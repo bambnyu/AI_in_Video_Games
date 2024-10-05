@@ -9,9 +9,13 @@ public abstract class Tile : MonoBehaviour
     [SerializeField] private GameObject highlight;
     public bool typeTest = false;
 
-    public virtual void Init(int x , int y)
+    // Coordinates of the tile
+    protected int tileX, tileY;
+
+    public virtual void Init(int x, int y)
     {
-        
+        tileX = x;
+        tileY = y;
     }
 
     void OnMouseEnter()
@@ -22,5 +26,14 @@ public abstract class Tile : MonoBehaviour
     void OnMouseExit()
     {
         highlight.SetActive(false);
+    }
+
+    void OnMouseDown()
+    {
+        // Change the color of the tile to dark green
+        renderer.color = new Color32(23, 86, 22,255);
+
+        // Display the coordinates in the console
+        Debug.Log($"Tile clicked at coordinates: ({tileX}, {tileY})");
     }
 }
