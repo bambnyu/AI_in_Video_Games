@@ -1,19 +1,15 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class GridManager : MonoBehaviour
 {
     [SerializeField] private int width, height;
-
     [SerializeField] private Tile grassTile, wallTile;
-
     [SerializeField] private Transform cam;
-
     [SerializeField] private Transform player; // test pour poser le joueur
 
     private Dictionary<Vector2, Tile> tiles;
+    public bool isGridGenerated { get; private set; } // Flag to indicate grid generation status
 
     void Start()
     {
@@ -29,23 +25,18 @@ public class GridManager : MonoBehaviour
             {
                 var spawnedTile = Instantiate(grassTile, new Vector3(x, y), Quaternion.identity);
                 spawnedTile.name = $"Tile {x} {y}";
-
-                
-                spawnedTile.Init(x,y);
-
-
+                spawnedTile.Init(x, y);
                 tiles[new Vector2(x, y)] = spawnedTile;
             }
         }
 
         cam.transform.position = new Vector3((float)width / 2 - 0.5f, (float)height / 2 - 0.5f, -10);
-        player.position = new Vector3((float)width / 2 - 0.5f, (float)height / 2 - 0.5f, -1); // test pour poser le joueur
+        player.position = new Vector3(0, 0, -1);
+        isGridGenerated = true;  // Set the flag to true after grid generation is done
     }
 
-    public Tile GetTileAtPosition(Vector2 pos)
+    public Dictionary<Vector2, Tile> GetTiles()
     {
-        if (tiles.TryGetValue(pos, out var tile)) return tile;
-        return null;
-
+        return tiles;
     }
 }
