@@ -6,6 +6,7 @@ public class EnemyController : MonoBehaviour
 {
     [SerializeField] private GridManager gridManager;  // Reference to the GridManager
     [SerializeField] private float moveSpeed = 2f;     // Speed of movement
+    [SerializeField] private Transform playerTransform; // Reference to the player's Transform
 
     private AStarPathfinding pathfinding;
     private List<Vector2> pathToFollow;
@@ -26,11 +27,13 @@ public class EnemyController : MonoBehaviour
         // Initialize A* pathfinding
         pathfinding = new AStarPathfinding(gridManager.GetTiles());
 
-        // Define start and target positions (you can set these dynamically)
-        Vector2 start = new Vector2(15, 8);
-        Vector2 target = new Vector2(7, 5); ///here change that to the player position
+        // Define start position as the enemy's current position
+        Vector2 start = new Vector2(Mathf.RoundToInt(transform.position.x), Mathf.RoundToInt(transform.position.y));
 
-        // Find the path
+        // Get the player's current position as the target
+        Vector2 target = new Vector2(Mathf.RoundToInt(playerTransform.position.x), Mathf.RoundToInt(playerTransform.position.y));
+
+        // Find the path using A* algorithm
         pathToFollow = pathfinding.FindPath(start, target);
 
         // Start moving along the path
