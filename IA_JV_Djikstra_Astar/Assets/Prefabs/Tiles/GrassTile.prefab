@@ -12,6 +12,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: GrassTile
       objectReference: {fileID: 0}
+    - target: {fileID: 4344417763096126882, guid: 9294c5c5cc162084d864537edf429d4e, type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4945463969897497389, guid: 9294c5c5cc162084d864537edf429d4e, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: c57e0e4bed58074429e8f0a36f49e96d, type: 3}
     - target: {fileID: 8236607341093447379, guid: 9294c5c5cc162084d864537edf429d4e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -77,10 +85,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4316917ae64615942b472316db047fde, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseColor: {r: 0.30380678, g: 0.5754717, b: 0.20901565, a: 1}
-  offsetColor: {r: 0.2579361, g: 0.49056602, b: 0.17817727, a: 1}
   renderer: {fileID: 6225295787995664938}
   highlight: {fileID: 4821557029081873800}
+  typeTest: 0
+  baseColor: {r: 0.64733887, g: 0.735849, b: 0.5588287, a: 1}
+  offsetColor: {r: 0.59404, g: 0.6886792, b: 0.5035155, a: 1}
 --- !u!1 &4821557029081873800 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5777269896102161551, guid: 9294c5c5cc162084d864537edf429d4e, type: 3}
