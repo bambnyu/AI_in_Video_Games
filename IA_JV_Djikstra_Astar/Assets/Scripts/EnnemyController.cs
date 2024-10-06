@@ -6,7 +6,7 @@ public class EnemyController : MonoBehaviour
 {
     [SerializeField] private GridManager gridManager;  // Reference to the GridManager
     [SerializeField] private float moveSpeed = 2f;     // Speed of movement
-    [SerializeField] private Transform playerTransform; // Reference to the player's Transform
+    [SerializeField] private Transform playerTransform; // Reference to the player's Transform component
 
     private AStarPathfinding pathfinding;
     private List<Vector2> pathToFollow;
