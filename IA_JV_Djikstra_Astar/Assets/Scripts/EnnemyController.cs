@@ -8,39 +8,39 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private float moveSpeed = 2f;     // Speed of movement
     [SerializeField] private Transform playerTransform; // Reference to the player's Transform
 
-    private AStarPathfinding pathfinding;
-    private List<Vector2> pathToFollow;
+    private AStarPathfinding pathfinding; // Reference to the A* pathfinding class
+    private List<Vector2> pathToFollow;  // List of tile positions to follow
 
     void Start()
     {
-        StartCoroutine(WaitForGridGeneration());
+        StartCoroutine(WaitForGridGeneration()); // Start the coroutine to wait for the grid to be generated
     }
 
     // Coroutine to wait until the grid is generated
     IEnumerator WaitForGridGeneration()
     {
-        while (!gridManager.isGridGenerated)
+        while (!gridManager.isGridGenerated) // Wait until the grid is generated
         {
-            yield return null;
+            yield return null; // Wait for the next frame
         }
 
         // Initialize A* pathfinding
-        pathfinding = new AStarPathfinding(gridManager.GetTiles());
+        pathfinding = new AStarPathfinding(gridManager.GetTiles()); // Initialize the A* pathfinding class with the grid tiles
 
         // Start continuously following the player
-        StartCoroutine(FollowPlayer());
+        StartCoroutine(FollowPlayer()); // Start the coroutine to follow the player
     }
 
     // Coroutine to continuously update the path and follow the player
     IEnumerator FollowPlayer()
     {
-        while (true)
+        while (true) // Continuously follow the player (probably not the best way to do this, but it works for now)
         {
             // Recalculate the path to the player's current position
-            Vector2 start = new Vector2(Mathf.RoundToInt(transform.position.x), Mathf.RoundToInt(transform.position.y));
-            Vector2 target = new Vector2(Mathf.RoundToInt(playerTransform.position.x), Mathf.RoundToInt(playerTransform.position.y));
+            Vector2 start = new Vector2(Mathf.RoundToInt(transform.position.x), Mathf.RoundToInt(transform.position.y)); // Round to the nearest integer to get the tile position
+            Vector2 target = new Vector2(Mathf.RoundToInt(playerTransform.position.x), Mathf.RoundToInt(playerTransform.position.y)); // Round to the nearest integer to get the tile position
 
-            pathToFollow = pathfinding.FindPath(start, target);
+            pathToFollow = pathfinding.FindPath(start, target); // Find the path from the enemy to the player
 
             // If a valid path is found, move along it
             if (pathToFollow != null)
@@ -59,21 +59,21 @@ public class EnemyController : MonoBehaviour
             }
 
             // Wait for a short time before recalculating the path
-            yield return new WaitForSeconds(0.5f);  // You can adjust this delay for more responsive or slower updates
+            yield return new WaitForSeconds(0.5f);  // Wait for 0.5 seconds before recalculating the path we can change it
         }
     }
 
     // Coroutine to move the enemy to the target position
     IEnumerator MoveToPosition(Vector3 targetPosition)
     {
-        Vector3 startPosition = transform.position;
+        Vector3 startPosition = transform.position; // Get the starting position
         float time = 0;
 
-        while (time < 1f)
+        while (time < 1f) // Move towards the target position
         {
-            time += Time.deltaTime * moveSpeed;
-            transform.position = Vector3.Lerp(startPosition, targetPosition, time);
-            yield return null;
+            time += Time.deltaTime * moveSpeed; // Increment the time based on the move speed
+            transform.position = Vector3.Lerp(startPosition, targetPosition, time); // Move towards the target position
+            yield return null;  // Wait for the next frame
         }
 
         transform.position = targetPosition; // Ensure final position is correct

@@ -34,6 +34,6 @@ public abstract class Tile : MonoBehaviour
         renderer.color = new Color32(23, 86, 22, 255); // we will have to change that so when the player click on a tile it becomes dark green and when he click on another tile the previous one becomes the original color thans to a second highlight object
 
         // Display the coordinates in the console
-        Debug.Log($"Tile clicked at coordinates: ({tileX}, {tileY})"); // just some debug
+        Debug.Log($"Tile clicked at coordinates: ({tileX}, {tileY})"); // just some debug to delete once everything works
     }
 }
