@@ -6,8 +6,13 @@ using UnityEngine;
 public abstract class Tile : MonoBehaviour
 {
     [SerializeField] protected SpriteRenderer renderer; // The sprite renderer of the tile
-    [SerializeField] private GameObject highlight; // The highlight object of the tile (to show when the mouse is over the tile)
+    //[SerializeField] private GameObject highlight; // The highlight object of the tile (to show when the mouse is over the tile)
     public bool typeTest = false; //is it useful?
+
+    [SerializeField] private GameObject flagPrefab; // Reference to the flag prefab
+    // Store the instantiated flag instance
+    private GameObject flagInstance;
+    private static Tile selectedTile; // Track the currently selected tile
 
     // Coordinates of the tile
     protected int tileX, tileY;
@@ -18,12 +23,48 @@ public abstract class Tile : MonoBehaviour
         tileY = y; // Set the y coordinate of the tile
     }
 
-    void OnMouseDown() // When the mouse clicks on the tile
+    void OnMouseDown()
     {
-        // Change the color of the tile to dark green
-        renderer.color = new Color32(23, 86, 22, 255); // we will have to change that so when the player click on a tile it becomes dark green and when he click on another tile the previous one becomes the original color thans to a second highlight object
+        // If this tile is already selected, deselect it
+        if (selectedTile == this)
+        {
+            DeselectTile();
+        }
+        else
+        {
+            // If there is a previously selected tile, deselect it
+            if (selectedTile != null)
+            {
+                selectedTile.DeselectTile();
+            }
 
-        // Display the coordinates in the console
-        Debug.Log($"Tile clicked at coordinates: ({tileX}, {tileY})"); // just some debug to delete once everything works
+            // Select this tile
+            SelectTile();
+        }
+
+        // Display the coordinates in the console (for debugging)
+        Debug.Log($"Tile clicked at coordinates: ({tileX}, {tileY})");
+    }
+
+    private void SelectTile()
+    {
+        // Instantiate the flag prefab at the tile's position
+        if (flagPrefab != null)
+        {
+            flagInstance = Instantiate(flagPrefab, transform.position, Quaternion.identity);
+        }
+        selectedTile = this; // Update the selected tile reference
+    }
+
+    // Method to deselect the tile
+    private void DeselectTile()
+    {
+        // Destroy the flag instance if it exists
+        if (flagInstance != null)
+        {
+            Destroy(flagInstance);
+            flagInstance = null;
+        }
+        selectedTile = null; // Clear the selected tile reference
     }
 }

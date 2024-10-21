@@ -85,11 +85,6 @@ SpriteRenderer:
   m_CorrespondingSourceObject: {fileID: 4945463969897497389, guid: 9294c5c5cc162084d864537edf429d4e, type: 3}
   m_PrefabInstance: {fileID: 5687855693262384581}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &2216807591624589642 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5777269896102161551, guid: 9294c5c5cc162084d864537edf429d4e, type: 3}
-  m_PrefabInstance: {fileID: 5687855693262384581}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &8275460213362132664 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4338942976798649213, guid: 9294c5c5cc162084d864537edf429d4e, type: 3}
@@ -108,5 +103,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   renderer: {fileID: 742675958031298280}
-  highlight: {fileID: 2216807591624589642}
   typeTest: 0
+  flagPrefab: {fileID: 2075500507747239625, guid: c7665331806e5264b8103f196b974724, type: 3}

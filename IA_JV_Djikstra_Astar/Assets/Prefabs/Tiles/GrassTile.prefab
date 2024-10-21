@@ -86,15 +86,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   renderer: {fileID: 6225295787995664938}
-  highlight: {fileID: 4821557029081873800}
   typeTest: 0
+  flagPrefab: {fileID: 2075500507747239625, guid: c7665331806e5264b8103f196b974724, type: 3}
   baseColor: {r: 0.64733887, g: 0.735849, b: 0.5588287, a: 1}
   offsetColor: {r: 0.59404, g: 0.6886792, b: 0.5035155, a: 1}
---- !u!1 &4821557029081873800 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5777269896102161551, guid: 9294c5c5cc162084d864537edf429d4e, type: 3}
-  m_PrefabInstance: {fileID: 1352593701075702023}
-  m_PrefabAsset: {fileID: 0}
 --- !u!212 &6225295787995664938 stripped
 SpriteRenderer:
   m_CorrespondingSourceObject: {fileID: 4945463969897497389, guid: 9294c5c5cc162084d864537edf429d4e, type: 3}
