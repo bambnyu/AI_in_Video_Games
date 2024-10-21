@@ -12,10 +12,19 @@ public class EnemyController : MonoBehaviour
     private List<Vector2> pathToFollow;  // List of tile positions to follow
 
     // for shooting
-    public int health = 50;
+    public int health = 30;
 
     void Start()
     {
+        // Check if the references are not set, then find them in the scene
+        if (gridManager == null)
+        {
+            gridManager = FindObjectOfType<GridManager>();
+        }
+        if (playerTransform == null)
+        {
+            playerTransform = FindObjectOfType<PlayerController>().transform;
+        }
         StartCoroutine(WaitForGridGeneration()); // Start the coroutine to wait for the grid to be generated
     }
 

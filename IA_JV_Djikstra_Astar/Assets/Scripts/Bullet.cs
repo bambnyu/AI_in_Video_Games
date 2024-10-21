@@ -8,7 +8,7 @@ public class Bullet : MonoBehaviour
     public float lifeTime = 6f;
     public int damage = 10;
 
-    public float darkenAmount = 0.15f; // Amount to darken the color on each hit
+    public float darkenAmount = 0.2f; // Amount to darken the color on each hit
 
     private void Start()
     {

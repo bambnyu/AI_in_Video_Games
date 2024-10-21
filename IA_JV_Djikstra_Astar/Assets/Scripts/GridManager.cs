@@ -56,6 +56,6 @@ public class GridManager : MonoBehaviour
     private Vector3 GetWorldPositionFromGrid(int x, int y)
     {
         // Assuming each tile is a unit square, adjust based on your grid configuration
-        return new Vector3(x, 0, y);
+        return new Vector3(x, y, 0); // inverser y 0
     }
 }

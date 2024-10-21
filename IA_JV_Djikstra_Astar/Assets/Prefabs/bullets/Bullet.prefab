@@ -150,4 +150,4 @@ MonoBehaviour:
   speed: 10
   lifeTime: 6
   damage: 10
-  darkenAmount: 0.15
+  darkenAmount: 0.2

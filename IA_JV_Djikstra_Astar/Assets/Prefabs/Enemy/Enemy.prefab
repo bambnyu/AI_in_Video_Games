@@ -101,7 +101,7 @@ MonoBehaviour:
   gridManager: {fileID: 0}
   moveSpeed: 2
   playerTransform: {fileID: 0}
-  health: 50
+  health: 30
 --- !u!135 &8793685970892897770
 SphereCollider:
   m_ObjectHideFlags: 0
