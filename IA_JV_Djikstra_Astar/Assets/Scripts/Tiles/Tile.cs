@@ -18,16 +18,6 @@ public abstract class Tile : MonoBehaviour
         tileY = y; // Set the y coordinate of the tile
     }
 
-    void OnMouseEnter() // When the mouse enters the tile
-    {
-        highlight.SetActive(true); // Show the highlight object
-    }
-
-    void OnMouseExit() // When the mouse exits the tile
-    {
-        highlight.SetActive(false); // Hide the highlight object
-    }
-
     void OnMouseDown() // When the mouse clicks on the tile
     {
         // Change the color of the tile to dark green
