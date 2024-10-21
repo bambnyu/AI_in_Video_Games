@@ -12,7 +12,7 @@ public class PlayerController : MonoBehaviour
     public float fireRate = 1f; // Bullets per second
     private float nextFireTime = 0f;
 
-    public float Speed; // Speed of the player
+    public float Speed = 2.0f; // Speed of the player
     float speedX, speedY; // Speed on X and Y axis
     Rigidbody2D rb; // Rigidbody of the player
 
