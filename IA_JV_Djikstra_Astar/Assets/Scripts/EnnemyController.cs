@@ -11,6 +11,9 @@ public class EnemyController : MonoBehaviour
     private AStarPathfinding pathfinding; // Reference to the A* pathfinding class
     private List<Vector2> pathToFollow;  // List of tile positions to follow
 
+    // for shooting
+    public int health = 50;
+
     void Start()
     {
         StartCoroutine(WaitForGridGeneration()); // Start the coroutine to wait for the grid to be generated
@@ -77,5 +80,21 @@ public class EnemyController : MonoBehaviour
         }
 
         transform.position = targetPosition; // Ensure final position is correct
+    }
+
+
+    public void TakeDamage(int damage)
+    {
+        health -= damage;
+        if (health <= 0)
+        {
+            Die();
+        }
+    }
+
+    private void Die()
+    {
+        // Handle the enemy's death (e.g., play animation, destroy object)
+        Destroy(gameObject);
     }
 }

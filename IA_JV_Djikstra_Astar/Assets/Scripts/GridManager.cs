@@ -39,4 +39,23 @@ public class GridManager : MonoBehaviour
     {
         return tiles; // Return the tiles dictionary
     }
+
+
+    public Vector3 GetRandomGridPosition()
+    {
+        // Assuming your grid is defined with a certain width and height
+        int randomX = Random.Range(0, width);
+        int randomY = Random.Range(0, height);
+
+        // Convert the grid coordinates to world coordinates
+        Vector3 randomPosition = GetWorldPositionFromGrid(randomX, randomY);
+
+        return randomPosition;
+    }
+
+    private Vector3 GetWorldPositionFromGrid(int x, int y)
+    {
+        // Assuming each tile is a unit square, adjust based on your grid configuration
+        return new Vector3(x, 0, y);
+    }
 }
