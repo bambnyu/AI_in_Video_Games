@@ -58,4 +58,19 @@ public class GridManager : MonoBehaviour
         // Assuming each tile is a unit square, adjust based on your grid configuration
         return new Vector3(x, y, 0); // inverser y 0
     }
+
+    //test for players djikstra
+    public Tile GetTileAtPosition(Vector2 position)
+    {
+        // Check if the dictionary contains the tile at the given position
+        if (tiles.TryGetValue(position, out Tile tile))
+        {
+            return tile; // Return the tile if it exists
+        }
+
+        // If no tile is found at the position, return null
+        return null;
+    }
+
+
 }

@@ -38,7 +38,8 @@ public class Bullet : MonoBehaviour
 
 
             // // You could call a method on the enemy to apply damage
-            other.GetComponent<EnemyController>()?.TakeDamage(damage);
+            other.GetComponent<EnemyController>()?.TakeDamage(damage);//////// a ameliorer separer en 2 tag pour les types d'enemis
+            other.GetComponent<DijkstraEnemyController>()?.TakeDamage(damage); /// it works not beautiful but yeaaaay
             // Destroy the bullet
             Destroy(gameObject);
         }
