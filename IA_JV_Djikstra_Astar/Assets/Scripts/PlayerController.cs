@@ -15,6 +15,11 @@ public class PlayerController : MonoBehaviour
     float speedX, speedY; // Speed on X and Y axis
     Rigidbody2D rb; // Rigidbody of the player
 
+    public float limitGauche = 0.0f;
+    public float limitDroite = 15.0f;
+    public float limitHaut = 8.0f;
+    public float limitBas = 0.0f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -40,6 +45,27 @@ public class PlayerController : MonoBehaviour
                 nextFireTime = Time.time + 1f / fireRate;
             }
         }
+
+        Vector3 position = transform.position;
+
+        if (position.x < limitGauche)
+        {
+            position.x = limitGauche;
+        }
+        if (position.x > limitDroite)
+        {
+            position.x = limitDroite;
+        }
+        if (position.y > limitHaut)
+        {
+            position.y = limitHaut;
+        }
+        if (position.y < limitBas)
+        {
+            position.y = limitBas;
+        }
+
+        transform.position = position;
     }
 
     private void Shoot(GameObject target)
