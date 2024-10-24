@@ -19,11 +19,16 @@ public class GridManager : MonoBehaviour
     void GenerateGrid()
     {
         tiles = new Dictionary<Vector2, Tile>(); // Initialize the dictionary
+        float wallProbability = 0.2f; // 20% chance for a tile to be a wall
+
         for (int x = 0; x < width; x++)
         {
             for (int y = 0; y < height; y++)
             {
-                var spawnedTile = Instantiate(grassTile, new Vector3(x, y), Quaternion.identity); // Spawn a tile
+                // Determine whether to spawn a grass tile or a wall tile
+                Tile tileToSpawn = Random.value < wallProbability ? wallTile : grassTile;
+
+                var spawnedTile = Instantiate(tileToSpawn, new Vector3(x, y), Quaternion.identity); // Spawn the tile
                 spawnedTile.name = $"Tile {x} {y}"; // Set the name of the tile
                 spawnedTile.Init(x, y); // Initialize the tile
                 tiles[new Vector2(x, y)] = spawnedTile; // Add the tile to the dictionary
@@ -32,7 +37,7 @@ public class GridManager : MonoBehaviour
 
         cam.transform.position = new Vector3((float)width / 2 - 0.5f, (float)height / 2 - 0.5f, -10); // Set the camera position
         player.position = new Vector3(0, 0, -1); // Set the player position
-        isGridGenerated = true;  // Set the flag to true after grid generation is done because we had problems with the priority for the rest of the code
+        isGridGenerated = true; // Set the flag to true after grid generation is done
     }
 
     public Dictionary<Vector2, Tile> GetTiles() // Getter for the tiles dictionary
