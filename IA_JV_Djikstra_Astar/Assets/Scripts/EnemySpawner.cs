@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-    public GameObject enemyPrefab; // Reference to the enemy prefab
+    public GameObject[] enemyPrefabs; // Array of enemy prefabs
     public float spawnInterval = 3f; // Time interval in seconds between spawns
     public GridManager gridManager; // Reference to your grid manager
 
@@ -29,7 +29,11 @@ public class EnemySpawner : MonoBehaviour
         // Get a random grid position
         Vector3 randomPosition = gridManager.GetRandomGridPosition();
 
+        // Select a random enemy prefab from the array
+        int randomIndex = Random.Range(0, enemyPrefabs.Length);
+        GameObject randomEnemyPrefab = enemyPrefabs[randomIndex];
+
         // Instantiate the enemy at the random position
-        Instantiate(enemyPrefab, randomPosition, Quaternion.identity);
+        Instantiate(randomEnemyPrefab, randomPosition, Quaternion.identity);
     }
 }
