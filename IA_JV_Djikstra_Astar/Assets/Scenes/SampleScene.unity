@@ -308,7 +308,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03d4b74336f5c6442a7fb69b6b8cf7bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyPrefab: {fileID: 3011765561296945840, guid: 83a035b69fd97114787afb0f6acc41bb, type: 3}
+  enemyPrefabs:
+  - {fileID: 3011765561296945840, guid: 83a035b69fd97114787afb0f6acc41bb, type: 3}
+  - {fileID: 7223709627974565735, guid: bac11850d3eb2ba44ad8f9bde6751f8e, type: 3}
   spawnInterval: 3
   gridManager: {fileID: 1171517421}
 --- !u!4 &769662257
@@ -427,6 +429,10 @@ MonoBehaviour:
   bulletPrefab: {fileID: 2890484851524862900, guid: 3383c658102941546b53e7cfdfcb6a3d, type: 3}
   fireRate: 1
   Speed: 2
+  limitGauche: 0
+  limitDroite: 15
+  limitHaut: 8
+  limitBas: 0
 --- !u!50 &1160864900
 Rigidbody2D:
   serializedVersion: 4
