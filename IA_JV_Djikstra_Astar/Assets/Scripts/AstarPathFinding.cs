@@ -38,9 +38,10 @@ public class AStarPathfinding
 
             foreach (Vector2 neighbor in GetNeighbors(currentNode)) // For each neighbor of current node
             {
-                if (closedList.Contains(neighbor) || !tiles.ContainsKey(neighbor)) // If neighbor is already evaluated or not walkable
+                // Check if neighbor is already evaluated, is not in the map, or is not walkable
+                if (closedList.Contains(neighbor) || !tiles.ContainsKey(neighbor) || !tiles[neighbor].IsWalkable)
                 {
-                    continue;
+                    continue; // Skip this neighbor
                 }
 
                 float tentativeGCost = gCosts[currentNode] + GetDistance(currentNode, neighbor); // Cost from start to neighbor through current node
