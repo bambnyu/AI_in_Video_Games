@@ -6,6 +6,8 @@ public class GrassTile : Tile
 {
     [SerializeField] private Color baseColor, offsetColor;
 
+    public override bool IsWalkable => true;
+
     public override void Init(int x, int y)
     {
         base.Init(x, y);  // Call the base method to set coordinates

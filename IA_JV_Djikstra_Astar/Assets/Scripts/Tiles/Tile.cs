@@ -12,10 +12,12 @@ public abstract class Tile : MonoBehaviour
     [SerializeField] private GameObject flagPrefab; // Reference to the flag prefab
     // Store the instantiated flag instance
     private GameObject flagInstance;
-    private static Tile selectedTile; // Track the currently selected tile
+    public static Tile selectedTile; // Track the currently selected tile
 
     // Coordinates of the tile
-    protected int tileX, tileY;
+    public int tileX, tileY;
+
+    public virtual bool IsWalkable { get; }
 
     public virtual void Init(int x, int y) // Initialize the tile virtual function
     {
@@ -46,7 +48,7 @@ public abstract class Tile : MonoBehaviour
         Debug.Log($"Tile clicked at coordinates: ({tileX}, {tileY})");
     }
 
-    private void SelectTile()
+    public void SelectTile()
     {
         // Instantiate the flag prefab at the tile's position
         if (flagPrefab != null)
@@ -57,7 +59,7 @@ public abstract class Tile : MonoBehaviour
     }
 
     // Method to deselect the tile
-    private void DeselectTile()
+    public void DeselectTile()
     {
         // Destroy the flag instance if it exists
         if (flagInstance != null)
