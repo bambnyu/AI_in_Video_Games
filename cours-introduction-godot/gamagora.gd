@@ -21,4 +21,4 @@ func _process(delta: float) -> void:
 
 func affiche_cpt()-> void:
 	cpt = cpt + 1
-	print(cpt)
+	# print(cpt)

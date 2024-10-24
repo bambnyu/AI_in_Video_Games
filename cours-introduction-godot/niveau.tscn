@@ -1,9 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://bhlfbko647rh7"]
+[gd_scene load_steps=7 format=3 uid="uid://bhlfbko647rh7"]
 
 [ext_resource type="Texture2D" uid="uid://gyspi4x64na4" path="res://icon.svg" id="1_dwsa3"]
 [ext_resource type="Script" path="res://niveau.gd" id="1_qfdhv"]
 [ext_resource type="Texture2D" uid="uid://d2p0tvbumeg5w" path="res://images.png" id="2_q3i1n"]
 [ext_resource type="Script" path="res://gamagora.gd" id="3_0j7do"]
+[ext_resource type="PackedScene" uid="uid://cfba4et2pfyuy" path="res://maison.tscn" id="5_5hl27"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vdxxe"]
+size = Vector2(127, 126)
 
 [node name="niveau" type="Node2D"]
 script = ExtResource("1_qfdhv")
@@ -15,10 +19,6 @@ offset_right = 108.0
 offset_bottom = 50.0
 text = "Hello"
 
-[node name="tete" type="Sprite2D" parent="."]
-position = Vector2(581, 322)
-texture = ExtResource("1_dwsa3")
-
 [node name="joueur" type="Node2D" parent="."]
 
 [node name="gamagora" type="Sprite2D" parent="joueur"]
@@ -26,3 +26,17 @@ position = Vector2(519, 261)
 scale = Vector2(0.276786, 0.276786)
 texture = ExtResource("2_q3i1n")
 script = ExtResource("3_0j7do")
+
+[node name="maison" parent="." instance=ExtResource("5_5hl27")]
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+
+[node name="tete" type="Sprite2D" parent="CharacterBody2D"]
+position = Vector2(0, -1)
+texture = ExtResource("1_dwsa3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+position = Vector2(0.5, -1)
+shape = SubResource("RectangleShape2D_vdxxe")
+
+[connection signal="toto" from="maison" to="." method="_on_maison_toto"]
