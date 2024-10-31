@@ -14,8 +14,8 @@ public class PlayerController : MonoBehaviour
     Rigidbody2D rb; // Rigidbody of the player
 
     public float limitGauche = 0.0f;
-    public float limitDroite = 15.0f;
-    public float limitHaut = 8.0f;
+    public float limitDroite = 16.0f;
+    public float limitHaut = 10.0f;
     public float limitBas = 0.0f;
 
     public float normalSpeed = 2.0f; // Normal speed of the player
