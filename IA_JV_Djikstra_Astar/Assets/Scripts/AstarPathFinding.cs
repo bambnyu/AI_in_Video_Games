@@ -98,12 +98,19 @@ public class AStarPathfinding
 
     private float GetHeuristicCost(Vector2 a, Vector2 b) // Get heuristic cost from a to b
     {
-        return Mathf.Abs(a.x - b.x) + Mathf.Abs(a.y - b.y); // Manhattan distance I guess ? 
+        return Mathf.Abs(a.x - b.x) + Mathf.Abs(a.y - b.y); // Manhattan distance heuristic
     }
 
     private float GetDistance(Vector2 a, Vector2 b) // Get distance from a to b
     {
-        return Vector2.Distance(a, b);
+        // Use the tile's crossing cost for more accurate pathfinding
+        if (tiles.ContainsKey(b))
+        {
+            return tiles[b].CrossingCost;
+        }
+
+        // Default cost if no specific tile is found
+        return 1f;
     }
 
     private List<Vector2> GetNeighbors(Vector2 position) // Get neighbors of position

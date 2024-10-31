@@ -110,7 +110,13 @@ public class DijkstraPathfinding
 
     private float GetDistance(Vector2 a, Vector2 b)
     {
-        // Returns the distance between two nodes (could be as simple as 1 for adjacent grid cells)
-        return Vector2.Distance(a, b);
+        // Returns the cost of moving from tile a to tile b based on tile crossing cost
+        if (tiles.ContainsKey(b))
+        {
+            return tiles[b].CrossingCost;
+        }
+
+        // Default cost if no specific tile is found
+        return 1f;
     }
 }

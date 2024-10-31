@@ -4,9 +4,9 @@ using UnityEngine;
 public class GridManager : MonoBehaviour
 {
     [SerializeField] private int width, height; // Grid dimensions
-    [SerializeField] private Tile grassTile, wallTile; // Tile prefabs
-    [SerializeField] private Transform cam; // test for camera
-    [SerializeField] private Transform player; // test for player
+    [SerializeField] private Tile grassTile, wallTile, waterTile; // Tile prefabs, including WaterTile
+    [SerializeField] private Transform cam; // Camera reference
+    [SerializeField] private Transform player; // Player reference
 
     private Dictionary<Vector2, Tile> tiles; // Dictionary to store tiles in the grid
     public bool isGridGenerated { get; private set; } // Flag to indicate grid generation status
@@ -20,13 +20,28 @@ public class GridManager : MonoBehaviour
     {
         tiles = new Dictionary<Vector2, Tile>(); // Initialize the dictionary
         float wallProbability = 0.2f; // 20% chance for a tile to be a wall
+        float waterProbability = 0.07f; // 15% chance for a tile to be water
 
         for (int x = 0; x < width; x++)
         {
             for (int y = 0; y < height; y++)
             {
-                // Determine whether to spawn a grass tile or a wall tile
-                Tile tileToSpawn = Random.value < wallProbability ? wallTile : grassTile;
+                // Determine whether to spawn a grass, wall, or water tile
+                Tile tileToSpawn;
+                float randomValue = Random.value;
+
+                if (randomValue < wallProbability)
+                {
+                    tileToSpawn = wallTile;
+                }
+                else if (randomValue < wallProbability + waterProbability)
+                {
+                    tileToSpawn = waterTile;
+                }
+                else
+                {
+                    tileToSpawn = grassTile;
+                }
 
                 var spawnedTile = Instantiate(tileToSpawn, new Vector3(x, y), Quaternion.identity); // Spawn the tile
                 spawnedTile.name = $"Tile {x} {y}"; // Set the name of the tile
@@ -45,37 +60,22 @@ public class GridManager : MonoBehaviour
         return tiles; // Return the tiles dictionary
     }
 
-
     public Vector3 GetRandomGridPosition()
     {
-        // Assuming your grid is defined with a certain width and height
         int randomX = Random.Range(0, width);
         int randomY = Random.Range(0, height);
-
-        // Convert the grid coordinates to world coordinates
-        Vector3 randomPosition = GetWorldPositionFromGrid(randomX, randomY);
-
-        return randomPosition;
+        return GetWorldPositionFromGrid(randomX, randomY); // Convert grid coordinates to world coordinates
     }
 
     private Vector3 GetWorldPositionFromGrid(int x, int y)
     {
-        // Assuming each tile is a unit square, adjust based on your grid configuration
-        return new Vector3(x, y, 0); // inverser y 0
+        return new Vector3(x, y, 0); // Assuming each tile is a unit square
     }
 
-    //test for players djikstra
+    // Helper to retrieve a tile at a specific position
     public Tile GetTileAtPosition(Vector2 position)
     {
-        // Check if the dictionary contains the tile at the given position
-        if (tiles.TryGetValue(position, out Tile tile))
-        {
-            return tile; // Return the tile if it exists
-        }
-
-        // If no tile is found at the position, return null
-        return null;
+        tiles.TryGetValue(position, out Tile tile);
+        return tile;
     }
-
-
 }

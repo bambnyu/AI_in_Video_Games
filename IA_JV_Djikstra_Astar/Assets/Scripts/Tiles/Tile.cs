@@ -1,72 +1,60 @@
 using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public abstract class Tile : MonoBehaviour
 {
     [SerializeField] protected SpriteRenderer renderer; // The sprite renderer of the tile
-    //[SerializeField] private GameObject highlight; // The highlight object of the tile (to show when the mouse is over the tile)
-    public bool typeTest = false; //is it useful?
-
     [SerializeField] private GameObject flagPrefab; // Reference to the flag prefab
-    // Store the instantiated flag instance
-    private GameObject flagInstance;
+    private GameObject flagInstance; // Store the instantiated flag instance
+
     public static Tile selectedTile; // Track the currently selected tile
+    public int tileX, tileY; // Coordinates of the tile
 
-    // Coordinates of the tile
-    public int tileX, tileY;
+    // Properties to set walkability and cost
+    public virtual bool IsWalkable { get; protected set; } = true; // Default walkability to true
+    public bool IsWater { get; protected set; } = false; // Default to non-water tile
+    public float CrossingCost { get; protected set; } = 1f; // Default cost for standard tile
 
-    public virtual bool IsWalkable { get; }
-
-    public virtual void Init(int x, int y) // Initialize the tile virtual function
+    public virtual void Init(int x, int y) // Initialize the tile
     {
-        tileX = x; // Set the x coordinate of the tile
-        tileY = y; // Set the y coordinate of the tile
+        tileX = x;
+        tileY = y;
     }
 
-    void OnMouseDown()
+    private void OnMouseDown()
     {
-        // If this tile is already selected, deselect it
+        // Toggle selection state
         if (selectedTile == this)
         {
             DeselectTile();
         }
         else
         {
-            // If there is a previously selected tile, deselect it
-            if (selectedTile != null)
-            {
-                selectedTile.DeselectTile();
-            }
-
-            // Select this tile
+            selectedTile?.DeselectTile();
             SelectTile();
         }
 
-        // Display the coordinates in the console (for debugging)
         Debug.Log($"Tile clicked at coordinates: ({tileX}, {tileY})");
     }
 
     public void SelectTile()
     {
-        // Instantiate the flag prefab at the tile's position
+        // Instantiate flag at the tile's position
         if (flagPrefab != null)
         {
             flagInstance = Instantiate(flagPrefab, transform.position, Quaternion.identity);
         }
-        selectedTile = this; // Update the selected tile reference
+        selectedTile = this;
     }
 
-    // Method to deselect the tile
     public void DeselectTile()
     {
-        // Destroy the flag instance if it exists
+        // Destroy the flag if it exists
         if (flagInstance != null)
         {
             Destroy(flagInstance);
             flagInstance = null;
         }
-        selectedTile = null; // Clear the selected tile reference
+        selectedTile = null;
     }
 }
