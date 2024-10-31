@@ -113,6 +113,7 @@ public class DijkstraEnemyController : MonoBehaviour
 
     private void Die()
     {
+        ScoreManager.instance.AddScore(1); // Increase score by 1
         Destroy(gameObject);
     }
 }
