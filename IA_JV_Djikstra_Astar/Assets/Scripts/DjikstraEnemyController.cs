@@ -5,9 +5,11 @@ using UnityEngine;
 public class DijkstraEnemyController : MonoBehaviour
 {
     [SerializeField] private GridManager gridManager;  // Reference to the GridManager
-    [SerializeField] private float moveSpeed = 2f;     // Speed of movement
+    [SerializeField] private float normalMoveSpeed = 2f; // Normal speed of movement
+    [SerializeField] private float waterMoveSpeed = 0.5f;  // Reduced speed on water tiles
     [SerializeField] private Transform playerTransform; // Reference to the player's Transform
 
+    private float currentMoveSpeed; // Current speed of the enemy
     private DijkstraPathfinding pathfinding; // Reference to the Dijkstra pathfinding class
     private List<Vector2> pathToFollow;  // List of tile positions to follow
 
@@ -16,7 +18,6 @@ public class DijkstraEnemyController : MonoBehaviour
 
     void Start()
     {
-        // Check if the references are not set, then find them in the scene
         if (gridManager == null)
         {
             gridManager = FindObjectOfType<GridManager>();
@@ -25,44 +26,38 @@ public class DijkstraEnemyController : MonoBehaviour
         {
             playerTransform = FindObjectOfType<PlayerController>().transform;
         }
-        StartCoroutine(WaitForGridGeneration()); // Start the coroutine to wait for the grid to be generated
+        currentMoveSpeed = normalMoveSpeed; // Set the initial speed
+        StartCoroutine(WaitForGridGeneration());
     }
 
-    // Coroutine to wait until the grid is generated
     IEnumerator WaitForGridGeneration()
     {
-        while (!gridManager.isGridGenerated) // Wait until the grid is generated
+        while (!gridManager.isGridGenerated)
         {
-            yield return null; // Wait for the next frame
+            yield return null;
         }
 
-        // Initialize Dijkstra pathfinding
-        pathfinding = new DijkstraPathfinding(gridManager.GetTiles()); // Initialize the Dijkstra pathfinding class with the grid tiles
-
-        // Start continuously following the player
-        StartCoroutine(FollowPlayer()); // Start the coroutine to follow the player
+        pathfinding = new DijkstraPathfinding(gridManager.GetTiles());
+        StartCoroutine(FollowPlayer());
     }
 
-    // Coroutine to continuously update the path and follow the player
     IEnumerator FollowPlayer()
     {
-        while (true) // Continuously follow the player
+        while (true)
         {
-            // Recalculate the path to the player's current position
-            Vector2 start = new Vector2(Mathf.RoundToInt(transform.position.x), Mathf.RoundToInt(transform.position.y)); // Round to the nearest integer to get the tile position
-            Vector2 target = new Vector2(Mathf.RoundToInt(playerTransform.position.x), Mathf.RoundToInt(playerTransform.position.y)); // Round to the nearest integer to get the tile position
+            Vector2 start = new Vector2(Mathf.RoundToInt(transform.position.x), Mathf.RoundToInt(transform.position.y));
+            Vector2 target = new Vector2(Mathf.RoundToInt(playerTransform.position.x), Mathf.RoundToInt(playerTransform.position.y));
 
-            pathToFollow = pathfinding.FindPath(start, target); // Find the path using Dijkstra's algorithm
+            pathToFollow = pathfinding.FindPath(start, target);
 
-            // If a valid path is found, move along it
-            if (pathToFollow != null && pathToFollow.Count > 0) // ici je change un peu ma logique
+            if (pathToFollow != null && pathToFollow.Count > 0)
             {
                 foreach (Vector2 tilePosition in pathToFollow)
                 {
                     Vector3 targetPosition = new Vector3(tilePosition.x, tilePosition.y, 0);
                     yield return StartCoroutine(MoveToPosition(targetPosition));
 
-                    // Update the path to ensure the enemy stays on track if the player moves
+                    // Update the path to track the player's movement
                     start = new Vector2(Mathf.RoundToInt(transform.position.x), Mathf.RoundToInt(transform.position.y));
                     target = new Vector2(Mathf.RoundToInt(playerTransform.position.x), Mathf.RoundToInt(playerTransform.position.y));
 
@@ -70,25 +65,41 @@ public class DijkstraEnemyController : MonoBehaviour
                 }
             }
 
-            // Wait for a short time before recalculating the path
-            yield return new WaitForSeconds(0.5f);  // Wait for 0.5 seconds before recalculating the path
+            yield return new WaitForSeconds(0.5f);
         }
     }
 
-    // Coroutine to move the enemy to the target position
     IEnumerator MoveToPosition(Vector3 targetPosition)
     {
-        Vector3 startPosition = transform.position; // Get the starting position
+        Vector3 startPosition = transform.position;
         float time = 0;
 
-        while (time < 1f) // Move towards the target position
+        // Adjust speed based on tile type
+        AdjustSpeedBasedOnTile(targetPosition);
+
+        while (time < 1f)
         {
-            time += Time.deltaTime * moveSpeed; // Increment the time based on the move speed
-            transform.position = Vector3.Lerp(startPosition, targetPosition, time); // Move towards the target position
-            yield return null;  // Wait for the next frame
+            time += Time.deltaTime * currentMoveSpeed;
+            transform.position = Vector3.Lerp(startPosition, targetPosition, time);
+            yield return null;
         }
 
-        transform.position = targetPosition; // Ensure final position is correct
+        transform.position = targetPosition;
+    }
+
+    private void AdjustSpeedBasedOnTile(Vector3 targetPosition)
+    {
+        Vector2 tilePosition = new Vector2(Mathf.RoundToInt(targetPosition.x), Mathf.RoundToInt(targetPosition.y));
+
+        // Check if the tile at the target position is a water tile
+        if (gridManager.IsPositionOnWaterTile(tilePosition))
+        {
+            currentMoveSpeed = waterMoveSpeed; // Use reduced speed on water tiles
+        }
+        else
+        {
+            currentMoveSpeed = normalMoveSpeed; // Use normal speed on other tiles
+        }
     }
 
     public void TakeDamage(int damage)
@@ -102,7 +113,6 @@ public class DijkstraEnemyController : MonoBehaviour
 
     private void Die()
     {
-        // Handle the enemy's death (e.g., play animation, destroy object)
         Destroy(gameObject);
     }
 }

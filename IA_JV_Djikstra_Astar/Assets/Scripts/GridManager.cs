@@ -20,7 +20,7 @@ public class GridManager : MonoBehaviour
     {
         tiles = new Dictionary<Vector2, Tile>(); // Initialize the dictionary
         float wallProbability = 0.2f; // 20% chance for a tile to be a wall
-        float waterProbability = 0.07f; // 15% chance for a tile to be water
+        float waterProbability = 0.07f; // 7% chance for a tile to be water
 
         for (int x = 0; x < width; x++)
         {
@@ -77,5 +77,16 @@ public class GridManager : MonoBehaviour
     {
         tiles.TryGetValue(position, out Tile tile);
         return tile;
+    }
+
+    // Helper method to check if a given position is a water tile
+    public bool IsPositionOnWaterTile(Vector2 position)
+    {
+        // Check if the position has a tile and if it’s a water tile
+        if (tiles.TryGetValue(position, out Tile tile))
+        {
+            return tile is WaterTile; // Return true if the tile is of type WaterTile
+        }
+        return false; // Return false if no tile or not a WaterTile
     }
 }

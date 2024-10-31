@@ -2,8 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-// Refactor it completely because it's not how we want to move the player
-// we want the player to move from tile to tile using astar or dijkstra to go to a clicked tile
 public class PlayerController : MonoBehaviour
 {
     // for shooting
@@ -11,7 +9,7 @@ public class PlayerController : MonoBehaviour
     public float fireRate = 1f; // Bullets per second
     private float nextFireTime = 0f;
 
-    public float Speed = 2.0f; // Speed of the player
+    //public float Speed = 2.0f; // Speed of the player
     float speedX, speedY; // Speed on X and Y axis
     Rigidbody2D rb; // Rigidbody of the player
 
@@ -20,17 +18,35 @@ public class PlayerController : MonoBehaviour
     public float limitHaut = 8.0f;
     public float limitBas = 0.0f;
 
+    public float normalSpeed = 2.0f; // Normal speed of the player
+    public float waterSpeed = 0.50f; // Reduced speed on water tiles
+    private float currentSpeed;
+    private GridManager gridManager;
+
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>(); // Get the rigidbody of the player 
+        gridManager = FindObjectOfType<GridManager>(); // Reference to the GridManager
+        currentSpeed = normalSpeed;
     }
 
     // Update is called once per frame
     void Update()
     {
-        speedX = Input.GetAxis("Horizontal") * Speed; // Get the speed on X axis
-        speedY = Input.GetAxis("Vertical") * Speed; // Get the speed on Y axis
+        Vector2 playerPosition = new Vector2(Mathf.RoundToInt(transform.position.x), Mathf.RoundToInt(transform.position.y));
+
+        if (gridManager.IsPositionOnWaterTile(playerPosition))
+        {
+            currentSpeed = waterSpeed; // Slow down on water
+        }
+        else
+        {
+            currentSpeed = normalSpeed; // Use normal speed on other tiles
+        }
+
+        speedX = Input.GetAxis("Horizontal") * currentSpeed; // Get the speed on X axis
+        speedY = Input.GetAxis("Vertical") * currentSpeed; // Get the speed on Y axis
         rb.velocity = new Vector2(speedX, speedY); // Set the velocity of the player
 
         // Check if it's time to fire
