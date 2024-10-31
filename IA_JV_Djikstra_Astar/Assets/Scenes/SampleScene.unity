@@ -859,8 +859,8 @@ MonoBehaviour:
   bulletPrefab: {fileID: 2890484851524862900, guid: 3383c658102941546b53e7cfdfcb6a3d, type: 3}
   fireRate: 1
   limitGauche: 0
-  limitDroite: 15
-  limitHaut: 8
+  limitDroite: 16
+  limitHaut: 10
   limitBas: 0
   normalSpeed: 2
   waterSpeed: 1
@@ -923,7 +923,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.010422945, y: -0.036479592}
+  m_Offset: {x: -0.0077815056, y: -0.04704511}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -934,7 +934,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.7290082, y: 0.7950189}
+  m_Size: {x: 0.6603317, y: 0.72106004}
   m_EdgeRadius: 0
 --- !u!114 &1160864902
 MonoBehaviour:
