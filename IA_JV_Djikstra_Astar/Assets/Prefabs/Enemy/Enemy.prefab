@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 628326208857434698}
   - component: {fileID: 6104862084807954973}
   - component: {fileID: 6148178933599586672}
-  - component: {fileID: 8793685970892897770}
+  - component: {fileID: 3478893731462884459}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -102,13 +102,15 @@ MonoBehaviour:
   moveSpeed: 2
   playerTransform: {fileID: 0}
   health: 30
---- !u!135 &8793685970892897770
-SphereCollider:
+--- !u!58 &3478893731462884459
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3011765561296945840}
+  m_Enabled: 1
+  m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -117,9 +119,21 @@ SphereCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
   m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}

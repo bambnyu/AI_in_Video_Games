@@ -50,7 +50,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3011765561296945840, guid: 83a035b69fd97114787afb0f6acc41bb, type: 3}
       propertyPath: m_Name
-      value: Enemy Djikstra Variant
+      value: Enemy Djikstra
+      objectReference: {fileID: 0}
+    - target: {fileID: 3478893731462884459, guid: 83a035b69fd97114787afb0f6acc41bb, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6104862084807954973, guid: 83a035b69fd97114787afb0f6acc41bb, type: 3}
       propertyPath: m_Color.b
@@ -66,12 +70,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 6148178933599586672, guid: 83a035b69fd97114787afb0f6acc41bb, type: 3}
+    - {fileID: 8793685970892897770, guid: 83a035b69fd97114787afb0f6acc41bb, type: 3}
+    - {fileID: 3478893731462884459, guid: 83a035b69fd97114787afb0f6acc41bb, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 3011765561296945840, guid: 83a035b69fd97114787afb0f6acc41bb, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1891456533589433833}
+    - targetCorrespondingSourceObject: {fileID: 3011765561296945840, guid: 83a035b69fd97114787afb0f6acc41bb, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -5373489534760735580}
   m_SourcePrefab: {fileID: 100100000, guid: 83a035b69fd97114787afb0f6acc41bb, type: 3}
 --- !u!1 &7223709627974565735 stripped
 GameObject:
@@ -94,3 +103,38 @@ MonoBehaviour:
   moveSpeed: 2
   playerTransform: {fileID: 0}
   health: 30
+--- !u!58 &-5373489534760735580
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7223709627974565735}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
