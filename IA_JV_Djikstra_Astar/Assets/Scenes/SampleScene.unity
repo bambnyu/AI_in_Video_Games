@@ -276,6 +276,7 @@ GameObject:
   - component: {fileID: 1160864899}
   - component: {fileID: 1160864900}
   - component: {fileID: 1160864901}
+  - component: {fileID: 1160864902}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -364,11 +365,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 2890484851524862900, guid: 3383c658102941546b53e7cfdfcb6a3d, type: 3}
   fireRate: 1
-  Speed: 2
   limitGauche: 0
   limitDroite: 15
   limitHaut: 8
   limitBas: 0
+  normalSpeed: 2
+  waterSpeed: 1
 --- !u!50 &1160864900
 Rigidbody2D:
   serializedVersion: 4
@@ -441,6 +443,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.7290082, y: 0.7950189}
   m_EdgeRadius: 0
+--- !u!114 &1160864902
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1160864896}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 347353e5b4112574e87856e7777a52f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 3
 --- !u!1 &1171517420
 GameObject:
   m_ObjectHideFlags: 0
@@ -474,6 +489,7 @@ MonoBehaviour:
   height: 9
   grassTile: {fileID: 5625706095599836704, guid: 173de52b241f0f5488ac6a2c49a27620, type: 3}
   wallTile: {fileID: 6710915502141190362, guid: 7c6792d05a5bf68409111df0a7f1b7b3, type: 3}
+  waterTile: {fileID: 8619511697396889556, guid: a337060ae378b314e95538568ab34784, type: 3}
   cam: {fileID: 519420032}
   player: {fileID: 1160864898}
 --- !u!4 &1171517422
