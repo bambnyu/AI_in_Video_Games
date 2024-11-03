@@ -30,8 +30,9 @@ public class PlayerHealth : MonoBehaviour
 
     private void Die()
     {
-        Debug.Log("Player has died.");
-        Destroy(gameObject); // Temporary extreme action for test
+        FindObjectOfType<GameOverManager>().ShowGameOver();
+        //Debug.Log("Player has died.");
+        //Destroy(gameObject); // Temporary extreme action for test
         // but should be replaced with a game over screen or something
         // a restart button or something 
     }
