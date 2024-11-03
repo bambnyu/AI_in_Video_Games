@@ -950,8 +950,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.0024414, y: -22.434}
-  m_SizeDelta: {x: 1191, y: 145.29}
+  m_AnchoredPosition: {x: 235, y: -179}
+  m_SizeDelta: {x: 724.9974, y: 276.72}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &523789809
 CanvasRenderer:
@@ -1384,15 +1384,64 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogueLines:
+  - characterName: ???
+    characterPortrait: {fileID: 0}
+    dialogueLine: 'Amy wanders through a quiet alley at dusk, '
+  - characterName: ???
+    characterPortrait: {fileID: 0}
+    dialogueLine: noticing a strange glow from behind a dumpster. She peeks and sees...
   - characterName: Amy
+    characterPortrait: {fileID: 21300000, guid: 0d430c2ec9d99ec49979bd2975798efe, type: 3}
+    dialogueLine: a small green cat with shimmering fur??
+  - characterName: Amy
+    characterPortrait: {fileID: 21300000, guid: 0d430c2ec9d99ec49979bd2975798efe, type: 3}
+    dialogueLine: "Whoa\u2026 what are you doing here, little one? You\u2019re\u2026
+      not like any cat I\u2019ve seen before?"
+  - characterName: The Green Cat
     characterPortrait: {fileID: 0}
-    dialogueLine: hi hello
-  - characterName: beaaar
+    dialogueLine: "The cat meows, but it sounds almost musical, with a soft echo.
+      The cat's eyes meet Amy\u2019s, and she feels an unexplainable connection."
+  - characterName: Amy
+    characterPortrait: {fileID: 21300000, guid: 0d430c2ec9d99ec49979bd2975798efe, type: 3}
+    dialogueLine: "Wait, are you lost? Or maybe\u2026 hiding?\" [reaches out her
+      hand]"
+  - characterName: ???
     characterPortrait: {fileID: 0}
-    dialogueLine: ZEHJTHGKQSFDGHQJ;,DWF
-  - characterName: Amye
+    dialogueLine: "Just as she\u2019s about to touch the cat, footsteps echo down
+      the alley. Two inspectors in dark uniforms appear, scanning the area with strange
+      devices."
+  - characterName: Inspector
     characterPortrait: {fileID: 0}
-    dialogueLine: dgfdkfbjc
+    dialogueLine: "The tracker\u2019s reading something in this sector. We must find
+      it before it escapes."
+  - characterName: Inspector
+    characterPortrait: {fileID: 0}
+    dialogueLine: Picking up signal from a dark alley. How typical..
+  - characterName: Amy
+    characterPortrait: {fileID: 21300000, guid: 21679e01b826ee3488a6636b2a2b4457, type: 3}
+    dialogueLine: "Amy\u2019s eyes widen as she glances between the cat and the inspectors."
+  - characterName: Amy
+    characterPortrait: {fileID: 21300000, guid: 0d430c2ec9d99ec49979bd2975798efe, type: 3}
+    dialogueLine: "They\u2019re after you, aren\u2019t they? Don\u2019t worry\u2014I\u2019m
+      not leaving you here."
+  - characterName: The green cat
+    characterPortrait: {fileID: 0}
+    dialogueLine: The cat nuzzles her hand as if understanding, then lets out a soft,
+      hopeful purr.
+  - characterName: Amy
+    characterPortrait: {fileID: 21300000, guid: 0d430c2ec9d99ec49979bd2975798efe, type: 3}
+    dialogueLine: "Alright, let\u2019s get out of here\u2026 together."
+  - characterName: Amy
+    characterPortrait: {fileID: 21300000, guid: 21679e01b826ee3488a6636b2a2b4457, type: 3}
+    dialogueLine: She scoops up the cat, and the two start to sneak away, but the
+      inspectors notice her.
+  - characterName: Inspector
+    characterPortrait: {fileID: 0}
+    dialogueLine: "Hey, stop! That\u2019s classified property!"
+  - characterName: Amy
+    characterPortrait: {fileID: 21300000, guid: 21679e01b826ee3488a6636b2a2b4457, type: 3}
+    dialogueLine: "Not anymore! Come on, buddy\u2014let\u2019s see if they can keep
+      up."
   dialogueText: {fileID: 523789810}
   characterNameText: {fileID: 1994465863}
   characterPortraitImage: {fileID: 2142892043}
@@ -3127,8 +3176,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -495.5, y: 75.212}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchoredPosition: {x: 47.44666, y: -15.639984}
+  m_SizeDelta: {x: 349.8909, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1994465862
 CanvasRenderer:
@@ -3221,7 +3270,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 0, y: 0, z: -1.3878174, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -3326,7 +3375,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
+  m_Color: {r: 0, g: 0, b: 0.05882353, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -3370,8 +3419,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.000061035156, y: -221.28839}
-  m_SizeDelta: {x: 0.00012207, y: -442.5768}
+  m_AnchoredPosition: {x: -0.76049805, y: -1.5209045}
+  m_SizeDelta: {x: 13.6877, y: 15.2087}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &2142892040
 GameObject:
@@ -3407,8 +3456,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 495.7326, y: 0.00024605}
-  m_SizeDelta: {x: 199.5268, y: 200.42}
+  m_AnchoredPosition: {x: -370.91473, y: -90.851006}
+  m_SizeDelta: {x: 445.1812, y: 453.02}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2142892042
 CanvasRenderer:

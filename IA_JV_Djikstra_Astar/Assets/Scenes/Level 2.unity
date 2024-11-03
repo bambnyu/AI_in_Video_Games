@@ -991,8 +991,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -495.5, y: 75.212}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchoredPosition: {x: 110, y: -19}
+  m_SizeDelta: {x: 467.4171, y: 49.515}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &418127305
 CanvasRenderer:
@@ -1650,7 +1650,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
+  m_Color: {r: 0, g: 0, b: 0.08627451, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1694,8 +1694,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.000061035156, y: -221.28839}
-  m_SizeDelta: {x: 0.00012207, y: -442.5768}
+  m_AnchoredPosition: {x: 0.760376, y: -0.000091552734}
+  m_SizeDelta: {x: 13.688, y: 12.1671}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1100780925
 GameObject:
@@ -2643,8 +2643,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 495.7326, y: 0.00024605}
-  m_SizeDelta: {x: 199.5268, y: 200.42}
+  m_AnchoredPosition: {x: -370.1002, y: -92.60312}
+  m_SizeDelta: {x: 448.1832, y: 453.02}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1652440544
 CanvasRenderer:
@@ -2852,8 +2852,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.0024414, y: -22.434}
-  m_SizeDelta: {x: 1191, y: 145.29}
+  m_AnchoredPosition: {x: 236.94702, y: -180.77583}
+  m_SizeDelta: {x: 721.311, y: 274.0372}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1742119592
 CanvasRenderer:
@@ -3101,15 +3101,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogueLines:
+  - characterName: Amy and the Green Cat
+    characterPortrait: {fileID: 0}
+    dialogueLine: "Amy and the cat continue along the narrow path, the dim lights
+      of town fading behind them as they move toward the open fields. The quiet rustling
+      of the tall grass surrounds them, but Amy\u2019s pulse races as she listens
+      for any sounds of pursuit."
   - characterName: Amy
     characterPortrait: {fileID: 0}
-    dialogueLine: hi hello
-  - characterName: beaaar
+    dialogueLine: "Almost there Greeny one\u2026 We\u2019ll be safe once we\u2019re
+      hidden in the fields."
+  - characterName: ???
     characterPortrait: {fileID: 0}
-    dialogueLine: ZEHJTHGKQSFDGHQJ;,DWF
-  - characterName: Amye
+    dialogueLine: "Just as they\u2019re about to slip into the tall grass, a beam
+      of light cuts through the darkness from behind them."
+  - characterName: Inspector
     characterPortrait: {fileID: 0}
-    dialogueLine: dgfdkfbjc
+    dialogueLine: "Hold it right there! We know you\u2019re out there with it!"
+  - characterName: Amy
+    characterPortrait: {fileID: 0}
+    dialogueLine: "[gasping, glancing at the cat] They\u2019re right on our heels.
+      Come on, we have to move!"
+  - characterName: Inspector
+    characterPortrait: {fileID: 0}
+    dialogueLine: "You\u2019re not getting away! That animal belongs to us!"
+  - characterName: Amy
+    characterPortrait: {fileID: 0}
+    dialogueLine: "I don\u2019t think so. Let\u2019s lose them in the trees up ahead."
   dialogueText: {fileID: 1742119593}
   characterNameText: {fileID: 418127306}
   characterPortraitImage: {fileID: 1652440545}
