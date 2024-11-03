@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class NewBehaviourScript : Tile
 {
+    // a wall tile is not walkable
     public override bool IsWalkable => false;
-    void OnMouseDown()
-    {
-        // Do nothing to prevent interaction with the WallTile
-    }
 }

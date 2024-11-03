@@ -7,17 +7,17 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private GridManager gridManager;  // Reference to the GridManager
     [SerializeField] private float normalMoveSpeed = 2f; // Normal speed of movement
     [SerializeField] private float waterMoveSpeed = 0.5f;  // Reduced speed on water tiles
-    [SerializeField] private Transform playerTransform; // Reference to the player's Transform
+    [SerializeField] private Transform playerTransform; // Reference to the player's Transform to calculate the path
 
     private float currentMoveSpeed; // Current speed of the enemy
     private AStarPathfinding pathfinding; // Reference to the A* pathfinding class
     private List<Vector2> pathToFollow;  // List of tile positions to follow
 
-    // for shooting
-    public int health = 30;
+    public int health = 30; // life points of the enemy
 
     void Start()
     {
+        // Find the GridManager and PlayerController
         if (gridManager == null)
         {
             gridManager = FindObjectOfType<GridManager>();
@@ -26,36 +26,43 @@ public class EnemyController : MonoBehaviour
         {
             playerTransform = FindObjectOfType<PlayerController>().transform;
         }
+
         currentMoveSpeed = normalMoveSpeed; // Set the initial speed
         StartCoroutine(WaitForGridGeneration());
     }
 
     IEnumerator WaitForGridGeneration()
     {
+        // Wait for the grid to be generated before starting the pathfinding, i need to do it because the pathfinding class needs the grid to be generated 
         while (!gridManager.isGridGenerated)
         {
             yield return null;
         }
 
+        // Initialize the pathfinding class and start following the player
         pathfinding = new AStarPathfinding(gridManager.GetTiles());
         StartCoroutine(FollowPlayer());
     }
 
     IEnumerator FollowPlayer()
     {
-        while (true)
+        while (true) // Loop to keep following the player until the enemy dies but it's not the best way to do it 
         {
+            // find the start and target positions which are the current position of the enemy and the player's position
             Vector2 start = new Vector2(Mathf.RoundToInt(transform.position.x), Mathf.RoundToInt(transform.position.y));
             Vector2 target = new Vector2(Mathf.RoundToInt(playerTransform.position.x), Mathf.RoundToInt(playerTransform.position.y));
 
+            // Find the path to follow
             pathToFollow = pathfinding.FindPath(start, target);
 
             if (pathToFollow != null)
             {
+                // Follow the path to the player
                 foreach (Vector2 tilePosition in pathToFollow)
                 {
+                    // Move to the target position
                     Vector3 targetPosition = new Vector3(tilePosition.x, tilePosition.y, 0);
-                    yield return StartCoroutine(MoveToPosition(targetPosition));
+                    yield return StartCoroutine(MoveToPosition(targetPosition)); 
 
                     // Update the path to track the player's movement
                     start = new Vector2(Mathf.RoundToInt(transform.position.x), Mathf.RoundToInt(transform.position.y));
@@ -65,18 +72,21 @@ public class EnemyController : MonoBehaviour
                 }
             }
 
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(0.5f); // Wait for a short time before recalculating the path
         }
     }
 
     IEnumerator MoveToPosition(Vector3 targetPosition)
     {
-        Vector3 startPosition = transform.position;
+        // Move the enemy to the target position which in use is the next tile in the path
+
+        Vector3 startPosition = transform.position; // Get the current position of the enemy
         float time = 0;
 
         // Check if the target tile is a water tile and adjust speed accordingly
         AdjustSpeedBasedOnTile(targetPosition);
 
+        // Move the enemy to the target position 
         while (time < 1f)
         {
             time += Time.deltaTime * currentMoveSpeed;
@@ -84,11 +94,12 @@ public class EnemyController : MonoBehaviour
             yield return null;
         }
 
-        transform.position = targetPosition;
+        transform.position = targetPosition; // Ensure the enemy is at the target position
     }
 
     private void AdjustSpeedBasedOnTile(Vector3 targetPosition)
     {
+        // Get the position of the tile
         Vector2 tilePosition = new Vector2(Mathf.RoundToInt(targetPosition.x), Mathf.RoundToInt(targetPosition.y));
 
         // Check if the tile at the target position is a water tile
@@ -104,6 +115,7 @@ public class EnemyController : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
+        // Reduce the health of the enemy and check if it is dead
         health -= damage;
         if (health <= 0)
         {
@@ -115,5 +127,7 @@ public class EnemyController : MonoBehaviour
     {
         ScoreManager.instance.AddScore(1); // Increase score by 1
         Destroy(gameObject);
+        //maybe add some particle effects or sound effects
+        //and maybe some other stuff like animations
     }
 }

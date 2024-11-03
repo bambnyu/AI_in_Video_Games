@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-    public GameObject[] enemyPrefabs; // Array of enemy prefabs
-    public float spawnInterval = 3f; // Time interval in seconds between spawns
+    public GameObject[] enemyPrefabs; // Array of enemy prefabs we only have two for now Djikstra and AStar
+    public float spawnInterval = 3f; // Time interval in seconds between spawns ---> could be changed to a range for more randomness
     public GridManager gridManager; // Reference to your grid manager
 
     private void Start()
@@ -27,6 +27,7 @@ public class EnemySpawner : MonoBehaviour
     private void SpawnEnemyAtRandomPosition()
     {
         // Get a random grid position
+        // i should check if the position is not occupied by another enemy or the player or the walls !!!!
         Vector3 randomPosition = gridManager.GetRandomGridPosition();
 
         // Select a random enemy prefab from the array

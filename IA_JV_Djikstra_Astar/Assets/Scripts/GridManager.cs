@@ -4,7 +4,7 @@ using UnityEngine;
 public class GridManager : MonoBehaviour
 {
     [SerializeField] private int width, height; // Grid dimensions
-    [SerializeField] private Tile grassTile, wallTile, waterTile; // Tile prefabs, including WaterTile
+    [SerializeField] private Tile grassTile, wallTile, waterTile; // Tile prefabs
     [SerializeField] private Transform cam; // Camera reference
     [SerializeField] private Transform player; // Player reference
 
@@ -50,6 +50,7 @@ public class GridManager : MonoBehaviour
             }
         }
 
+        // Set the camera and player positions could be changed to be optimized later for different levels and restart options
         cam.transform.position = new Vector3((float)width / 2 - 0.5f, (float)height / 2 - 0.5f, -10); // Set the camera position
         player.position = new Vector3(0, 0, -1); // Set the player position
         isGridGenerated = true; // Set the flag to true after grid generation is done
@@ -69,17 +70,17 @@ public class GridManager : MonoBehaviour
 
     private Vector3 GetWorldPositionFromGrid(int x, int y)
     {
-        return new Vector3(x, y, 0); // Assuming each tile is a unit square
+        return new Vector3(x, y, 0); // Convert grid coordinates to world coordinates could be deleted and directly used in the previous method
     }
 
-    // Helper to retrieve a tile at a specific position
+    // retrieve a tile at a specific position
     public Tile GetTileAtPosition(Vector2 position)
     {
         tiles.TryGetValue(position, out Tile tile);
         return tile;
     }
 
-    // Helper method to check if a given position is a water tile
+    //check if a given position is a water tile
     public bool IsPositionOnWaterTile(Vector2 position)
     {
         // Check if the position has a tile and if it’s a water tile

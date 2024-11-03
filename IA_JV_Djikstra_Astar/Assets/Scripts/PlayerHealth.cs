@@ -5,7 +5,7 @@ public class PlayerHealth : MonoBehaviour
     public int maxHealth = 3;
     private int currentHealth;
 
-    public delegate void OnHealthChanged(int currentHealth);
+    public delegate void OnHealthChanged(int currentHealth); // Delegate for health change  dark magic for me but hey internet said it's good and it works soooo
     public static event OnHealthChanged onHealthChanged; // Event for health change
 
     void Start()
@@ -31,7 +31,9 @@ public class PlayerHealth : MonoBehaviour
     private void Die()
     {
         Debug.Log("Player has died.");
-        Destroy(gameObject); // Temporary extreme action
+        Destroy(gameObject); // Temporary extreme action for test
+        // but should be replaced with a game over screen or something
+        // a restart button or something 
     }
 
     void OnTriggerEnter2D(Collider2D other)

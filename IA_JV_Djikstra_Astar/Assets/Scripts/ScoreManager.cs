@@ -3,14 +3,14 @@ using TMPro;
 
 public class ScoreManager : MonoBehaviour
 {
-    public static ScoreManager instance; // Singleton instance
+    public static ScoreManager instance; //  create an instance of the ScoreManager class to allow other scripts to access it
 
-    public TextMeshProUGUI scoreText; // Reference to the TextMeshPro score text
+    public TextMeshProUGUI scoreText; // Reference to the TextMeshPro score text 
     private int score = 0; // Initial score
 
     void Awake()
     {
-        // Ensure only one instance of ScoreManager exists
+        // Ensure only one instance of ScoreManager exists 
         if (instance == null)
         {
             instance = this;

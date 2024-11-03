@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// A* pathfinding algorithm implementation 
 public class AStarPathfinding
 {
     private Dictionary<Vector2, Tile> tiles; // Tile map
@@ -117,6 +116,7 @@ public class AStarPathfinding
     {
         List<Vector2> neighbors = new List<Vector2> // Initialize neighbors
         {
+            //another way to get neighbors compared to djikstra but same result/purpose
             new Vector2(position.x + 1, position.y),
             new Vector2(position.x - 1, position.y),
             new Vector2(position.x, position.y + 1),

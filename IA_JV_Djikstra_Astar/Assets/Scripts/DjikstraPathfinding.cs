@@ -51,8 +51,9 @@ public class DijkstraPathfinding
                     continue;
                 }
 
+                // Calculate tentative gCost which is the cost from start to the neighbor through the current node
                 float tentativeGCost = gCosts[currentNode] + GetDistance(currentNode, neighbor);
-
+                // If the tentative gCost is lower than the current gCost, update the values
                 if (!gCosts.ContainsKey(neighbor) || tentativeGCost < gCosts[neighbor])
                 {
                     gCosts[neighbor] = tentativeGCost;
@@ -60,7 +61,7 @@ public class DijkstraPathfinding
 
                     if (!openList.Contains(neighbor))
                     {
-                        openList.Add(neighbor);
+                        openList.Add(neighbor); // Add the neighbor to the open list
                     }
                 }
             }
@@ -72,11 +73,12 @@ public class DijkstraPathfinding
 
     private List<Vector2> ReconstructPath(Dictionary<Vector2, Vector2> cameFrom, Vector2 currentNode)
     {
+        // Reconstruct the path from the cameFrom dictionary
         List<Vector2> path = new List<Vector2>();
-        while (cameFrom.ContainsKey(currentNode))
+        while (cameFrom.ContainsKey(currentNode)) // Loop until the start node is reached
         {
-            path.Add(currentNode);
-            currentNode = cameFrom[currentNode];
+            path.Add(currentNode); // Add the current node to the path
+            currentNode = cameFrom[currentNode]; // Move to the previous node
         }
         path.Reverse(); // Reverse the path to get from start to target
         return path;
@@ -84,7 +86,7 @@ public class DijkstraPathfinding
 
     private IEnumerable<Vector2> GetNeighbors(Vector2 node)
     {
-        // Neighbors based on a 4-directional grid (up, down, left, right)
+        // Neighbors based on a 4-directional grid (up, down, left, right) as I use square tiles
         Vector2[] directions = new Vector2[]
         {
             new Vector2(0, 1),  // Up
@@ -97,15 +99,15 @@ public class DijkstraPathfinding
 
         foreach (Vector2 direction in directions)
         {
-            Vector2 neighborPos = node + direction;
+            Vector2 neighborPos = node + direction; // Calculate the position of the neighbor
             // Check if the tile exists and is walkable (not an obstacle)
             if (tiles.ContainsKey(neighborPos) && tiles[neighborPos].IsWalkable)
             {
-                neighbors.Add(neighborPos);
+                neighbors.Add(neighborPos); // Add the neighbor to the list
             }
         }
 
-        return neighbors;
+        return neighbors; 
     }
 
     private float GetDistance(Vector2 a, Vector2 b)
@@ -113,10 +115,10 @@ public class DijkstraPathfinding
         // Returns the cost of moving from tile a to tile b based on tile crossing cost
         if (tiles.ContainsKey(b))
         {
-            return tiles[b].CrossingCost;
+            return tiles[b].CrossingCost; // Return the cost of crossing the tile
         }
 
-        // Default cost if no specific tile is found
-        return 1f;
+        // Default cost if no specific tile is found just in case but should not happen
+        return 1f; 
     }
 }

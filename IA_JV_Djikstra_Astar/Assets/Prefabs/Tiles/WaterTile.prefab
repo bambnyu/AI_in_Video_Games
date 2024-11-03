@@ -20,6 +20,18 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: c7614818fa484c24cb6a6f9e027fffdb, type: 3}
+    - target: {fileID: 4945463969897497389, guid: 9294c5c5cc162084d864537edf429d4e, type: 3}
+      propertyPath: m_Color.b
+      value: 0.6320754
+      objectReference: {fileID: 0}
+    - target: {fileID: 4945463969897497389, guid: 9294c5c5cc162084d864537edf429d4e, type: 3}
+      propertyPath: m_Color.g
+      value: 0.48847398
+      objectReference: {fileID: 0}
+    - target: {fileID: 4945463969897497389, guid: 9294c5c5cc162084d864537edf429d4e, type: 3}
+      propertyPath: m_Color.r
+      value: 0.3965379
+      objectReference: {fileID: 0}
     - target: {fileID: 8236607341093447379, guid: 9294c5c5cc162084d864537edf429d4e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -86,11 +98,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   renderer: {fileID: 6225295787995664938}
-  flagPrefab: {fileID: 2075500507747239625, guid: c7665331806e5264b8103f196b974724, type: 3}
   tileX: 0
   tileY: 0
-  baseColor: {r: 0.51023495, g: 0.6419138, b: 0.9245283, a: 1}
-  offsetColor: {r: 0, g: 0.40970847, b: 0.8392157, a: 1}
 --- !u!212 &6225295787995664938 stripped
 SpriteRenderer:
   m_CorrespondingSourceObject: {fileID: 4945463969897497389, guid: 9294c5c5cc162084d864537edf429d4e, type: 3}
