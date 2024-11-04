@@ -3102,16 +3102,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogueLines:
   - characterName: Amy and the Green Cat
-    characterPortrait: {fileID: 0}
-    dialogueLine: "Amy and the cat continue along the narrow path, the dim lights
-      of town fading behind them as they move toward the open fields. The quiet rustling
-      of the tall grass surrounds them, but Amy\u2019s pulse races as she listens
-      for any sounds of pursuit."
+    characterPortrait: {fileID: 21300000, guid: 3fc7ce1451e29894fb664b18fc4838f6, type: 3}
+    dialogueLine: Amy and the cat continue along the narrow path, the dim lights
+      of town fading behind them as they move toward the  fields.
   - characterName: Amy
-    characterPortrait: {fileID: 0}
+    characterPortrait: {fileID: 21300000, guid: d1b1f78ab67954e4ab5a21ef79f0b790, type: 3}
     dialogueLine: "Almost there Greeny one\u2026 We\u2019ll be safe once we\u2019re
       hidden in the fields."
-  - characterName: ???
+  - characterName: 
     characterPortrait: {fileID: 0}
     dialogueLine: "Just as they\u2019re about to slip into the tall grass, a beam
       of light cuts through the darkness from behind them."
@@ -3119,21 +3117,21 @@ MonoBehaviour:
     characterPortrait: {fileID: 0}
     dialogueLine: "Hold it right there! We know you\u2019re out there with it!"
   - characterName: Amy
-    characterPortrait: {fileID: 0}
+    characterPortrait: {fileID: 21300000, guid: eec4203e78493ea43ad8df540d59a4a4, type: 3}
     dialogueLine: "[gasping, glancing at the cat] They\u2019re right on our heels.
       Come on, we have to move!"
   - characterName: Inspector
     characterPortrait: {fileID: 0}
     dialogueLine: "You\u2019re not getting away! That animal belongs to us!"
   - characterName: Amy
-    characterPortrait: {fileID: 0}
+    characterPortrait: {fileID: 21300000, guid: 3fc7ce1451e29894fb664b18fc4838f6, type: 3}
     dialogueLine: "I don\u2019t think so. Let\u2019s lose them in the trees up ahead."
   dialogueText: {fileID: 1742119593}
   characterNameText: {fileID: 418127306}
   characterPortraitImage: {fileID: 1652440545}
   dialogueUI: {fileID: 1095246471}
   controlScreen: {fileID: 1270259309}
-  letterDelay: 0.05
+  letterDelay: 0.01
 --- !u!114 &1847424523
 MonoBehaviour:
   m_ObjectHideFlags: 0
