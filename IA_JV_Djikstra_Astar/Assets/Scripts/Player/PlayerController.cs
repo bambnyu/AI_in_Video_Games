@@ -24,11 +24,14 @@ public class PlayerController : MonoBehaviour
     private float currentSpeed;
 
     private GridManager gridManager;
-        
+    private Animator animator;
+
+
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>(); // Get the rigidbody of the player 
+        animator = GetComponent<Animator>(); // Get the Animator component
         gridManager = FindObjectOfType<GridManager>(); // Reference to the GridManager
         currentSpeed = normalSpeed; // Set the initial speed
     }
@@ -54,6 +57,20 @@ public class PlayerController : MonoBehaviour
         speedY = Input.GetAxis("Vertical") * currentSpeed; // Get the speed on Y axis
         rb.velocity = new Vector2(speedX, speedY); // Set the velocity of the player
 
+        // Determine the direction based on input, only if there is movement
+        if (Mathf.Abs(speedX) > Mathf.Abs(speedY) && Mathf.Abs(speedX) > Mathf.Epsilon)
+        {
+            // Horizontal movement
+            animator.SetInteger("Direction", speedX > 0 ? 3 : 2); // 3: Right, 2: Left
+            Debug.Log("Horizontal movement");
+        }
+        else if (Mathf.Abs(speedY) > Mathf.Epsilon)
+        {
+            // Vertical movement
+            animator.SetInteger("Direction", speedY > 0 ? 1 : 0); // 1: Up, 0: Down
+            Debug.Log("Vertical movement");
+        }
+        // No reset for `Direction` here, so it retains the last value when speed is zero
 
         // Check if it's time to fire
         if (Time.time >= nextFireTime)
@@ -90,6 +107,7 @@ public class PlayerController : MonoBehaviour
 
         transform.position = position; // Set the new position of the player
     }
+
 
     private void Shoot(GameObject target)
     {

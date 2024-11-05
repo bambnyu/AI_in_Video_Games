@@ -15,8 +15,12 @@ public class EnemyController : MonoBehaviour
 
     public int health = 30; // life points of the enemy
 
+    private Animator animator;
+
     void Start()
     {
+        animator = GetComponent<Animator>();
+
         // Find the GridManager and PlayerController
         if (gridManager == null)
         {
@@ -86,6 +90,19 @@ public class EnemyController : MonoBehaviour
         // Check if the target tile is a water tile and adjust speed accordingly
         AdjustSpeedBasedOnTile(targetPosition);
 
+        // Determine direction based on the target position relative to the current position
+        Vector3 direction = (targetPosition - startPosition).normalized;
+        if (Mathf.Abs(direction.x) > Mathf.Abs(direction.y))
+        {
+            // Moving horizontally
+            animator.SetInteger("Direction", direction.x > 0 ? 3 : 2); // 3: Right, 2: Left
+        }
+        else
+        {
+            // Moving vertically
+            animator.SetInteger("Direction", direction.y > 0 ? 1 : 0); // 1: Up, 0: Down
+        }
+
         // Move the enemy to the target position 
         while (time < 1f)
         {
@@ -125,6 +142,7 @@ public class EnemyController : MonoBehaviour
 
     private void Die()
     {
+        animator.SetBool("isDead", true);
         ScoreManager.instance.AddScore(1); // Increase score by 1
         Destroy(gameObject);
         //maybe add some particle effects or sound effects

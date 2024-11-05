@@ -15,8 +15,13 @@ public class DijkstraEnemyController : MonoBehaviour
 
     public int health = 30; // life points of the enemy
 
+    private Animator animator;
+
+
     void Start()
     {
+        animator = GetComponent<Animator>();
+
         // Find the GridManager and PlayerController
         if (gridManager == null)
         {
@@ -78,15 +83,24 @@ public class DijkstraEnemyController : MonoBehaviour
 
     IEnumerator MoveToPosition(Vector3 targetPosition)
     {
-        // Move the enemy to the target position which in use is the next tile in the path
-
         Vector3 startPosition = transform.position;
         float time = 0;
 
-        // Adjust speed based on tile type
         AdjustSpeedBasedOnTile(targetPosition);
 
-        // Move the enemy to the target position 
+        // Determine direction based on the target position relative to the current position
+        Vector3 direction = (targetPosition - startPosition).normalized;
+        if (Mathf.Abs(direction.x) > Mathf.Abs(direction.y))
+        {
+            // Moving horizontally
+            animator.SetInteger("Direction", direction.x > 0 ? 3 : 2); // 3: Right, 2: Left
+        }
+        else
+        {
+            // Moving vertically
+            animator.SetInteger("Direction", direction.y > 0 ? 1 : 0); // 1: Up, 0: Down
+        }
+
         while (time < 1f)
         {
             time += Time.deltaTime * currentMoveSpeed;
@@ -96,6 +110,8 @@ public class DijkstraEnemyController : MonoBehaviour
 
         transform.position = targetPosition; // Ensure the enemy is at the target position
     }
+
+
 
     private void AdjustSpeedBasedOnTile(Vector3 targetPosition)
     {
@@ -125,6 +141,7 @@ public class DijkstraEnemyController : MonoBehaviour
 
     private void Die()
     {
+        animator.SetBool("isDead", true);
         ScoreManager.instance.AddScore(1); // Increase score by 1
         Destroy(gameObject);
         //maybe add some particle effects or sound effects
