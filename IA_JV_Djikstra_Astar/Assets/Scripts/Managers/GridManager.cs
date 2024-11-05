@@ -93,7 +93,7 @@ public class GridManager : MonoBehaviour
         }
         return false; // Return false if no tile or not a WaterTile
     }
-    public bool IsPositionOnWallTile(Vector2 position)
+    public bool IsPositionOnWallTile(Vector2 position) // not use for now but hey could be used
     {
         if (tiles.TryGetValue(position, out Tile tile))
         {

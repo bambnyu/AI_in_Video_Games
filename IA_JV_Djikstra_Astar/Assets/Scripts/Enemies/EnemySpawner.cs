@@ -30,6 +30,8 @@ public class EnemySpawner : MonoBehaviour
         // i should check if the position is not occupied by another enemy or the player or the walls !!!!
         Vector3 randomPosition = gridManager.GetRandomGridPosition();
 
+
+
         // Select a random enemy prefab from the array
         int randomIndex = Random.Range(0, enemyPrefabs.Length);
         GameObject randomEnemyPrefab = enemyPrefabs[randomIndex];

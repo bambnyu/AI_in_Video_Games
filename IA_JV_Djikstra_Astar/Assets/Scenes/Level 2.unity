@@ -2136,6 +2136,8 @@ MonoBehaviour:
   waterTile: {fileID: 8619511697396889556, guid: a337060ae378b314e95538568ab34784, type: 3}
   cam: {fileID: 519420032}
   player: {fileID: 1160864898}
+  probawall: 0.2
+  probawater: 0.07
 --- !u!4 &1171517422
 Transform:
   m_ObjectHideFlags: 0
@@ -2626,7 +2628,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1536089267
 MonoBehaviour:
   m_ObjectHideFlags: 0
