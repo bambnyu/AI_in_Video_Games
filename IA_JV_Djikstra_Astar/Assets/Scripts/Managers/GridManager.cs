@@ -11,6 +11,9 @@ public class GridManager : MonoBehaviour
     private Dictionary<Vector2, Tile> tiles; // Dictionary to store tiles in the grid
     public bool isGridGenerated { get; private set; } // Flag to indicate grid generation status
 
+    public float probawall = 0.2f;
+    public float probawater = 0.07f;
+
     void Start()
     {
         GenerateGrid(); // Generate the grid
@@ -19,8 +22,8 @@ public class GridManager : MonoBehaviour
     void GenerateGrid()
     {
         tiles = new Dictionary<Vector2, Tile>(); // Initialize the dictionary
-        float wallProbability = 0.2f; // 20% chance for a tile to be a wall
-        float waterProbability = 0.07f; // 7% chance for a tile to be water
+        float wallProbability = probawall; // chance for a tile to be a wall
+        float waterProbability = probawater; // chance for a tile to be water
 
         for (int x = 0; x < width; x++)
         {
@@ -30,7 +33,7 @@ public class GridManager : MonoBehaviour
                 Tile tileToSpawn;
                 float randomValue = Random.value;
 
-                if (randomValue < wallProbability)
+                if (randomValue < wallProbability && (x+y!=0)) // Don't put a wall on the spawning tile of the player
                 {
                     tileToSpawn = wallTile;
                 }
@@ -89,5 +92,13 @@ public class GridManager : MonoBehaviour
             return tile is WaterTile; // Return true if the tile is of type WaterTile
         }
         return false; // Return false if no tile or not a WaterTile
+    }
+    public bool IsPositionOnWallTile(Vector2 position)
+    {
+        if (tiles.TryGetValue(position, out Tile tile))
+        {
+            return tile == wallTile;
+        }
+        return false;
     }
 }

@@ -27,6 +27,7 @@ public class DialogueManager : MonoBehaviour
     public float letterDelay = 0.05f;
 
     private bool isTyping = false;
+    private bool tuto_show = false;
 
     void Start()
     {
@@ -38,8 +39,9 @@ public class DialogueManager : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && !tuto_show)
         {
+
             if (!isTyping && !controlScreen.activeSelf)
             {
                 currentLineIndex++;
@@ -54,8 +56,10 @@ public class DialogueManager : MonoBehaviour
             }
             else if (controlScreen.activeSelf)
             {
+                tuto_show = true;
                 StartLevel();
             }
+            
         }
     }
 
