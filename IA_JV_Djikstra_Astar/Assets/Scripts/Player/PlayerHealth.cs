@@ -12,10 +12,15 @@ public class PlayerHealth : MonoBehaviour
     public delegate void OnHealthChanged(int currentHealth); // Delegate for health change  dark magic for me but hey internet said it's good and it works soooo
     public static event OnHealthChanged onHealthChanged; // Event for health change
 
+    public AudioClip hitSound; // Sound effect for taking damage
+    private AudioSource audioSource; // Reference to the AudioSource component
+
     void Start()
     {
         currentHealth = maxHealth;
         onHealthChanged?.Invoke(currentHealth); // Initialize UI with max health
+
+        audioSource = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -39,6 +44,11 @@ public class PlayerHealth : MonoBehaviour
         Debug.Log("Player took damage. Current health: " + currentHealth);
 
         onHealthChanged?.Invoke(currentHealth); // Notify UI of health change
+
+        if (hitSound != null)
+        {
+            audioSource.PlayOneShot(hitSound);
+        }
 
         if (currentHealth <= 0)
         {

@@ -29,11 +29,19 @@ public class DialogueManager : MonoBehaviour
     private bool isTyping = false;
     private bool tuto_show = false;
 
+    public AudioClip typingSound; // Typing sound for each letter
+    private AudioSource audioSource;
+
     void Start()
     {
         Time.timeScale = 0f; // Pause the game at the beginning
         dialogueUI.SetActive(true);
         controlScreen.SetActive(false);
+
+        audioSource = gameObject.AddComponent<AudioSource>();
+        audioSource.playOnAwake = false;
+        audioSource.volume = 0.1f;
+
         StartCoroutine(TypeLine(dialogueLines[currentLineIndex]));
     }
 
@@ -76,6 +84,13 @@ public class DialogueManager : MonoBehaviour
         foreach (char letter in line.dialogueLine.ToCharArray())
         {
             dialogueText.text += letter; // Add each letter one by one
+
+            // Play typing sound
+            if (typingSound != null)
+            {
+                audioSource.PlayOneShot(typingSound);
+            }
+
             yield return new WaitForSecondsRealtime(letterDelay); // Use WaitForSecondsRealtime to ignore time scale
         }
 

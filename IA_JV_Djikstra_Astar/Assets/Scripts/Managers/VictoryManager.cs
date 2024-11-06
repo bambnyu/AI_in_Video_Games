@@ -5,7 +5,7 @@ public class VictoryManager : MonoBehaviour
 {
     public GameObject victoryUI; // Reference to the Victory Canvas UI
 
-    public void ShowVictoryScreen()
+   public void ShowVictoryScreen()
     {
         victoryUI.SetActive(true); // Show the Victory Screen
         Time.timeScale = 0f; // Pause the game when the victory screen appears

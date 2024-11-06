@@ -155,6 +155,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pauseMenuUI: {fileID: 1558581055}
+  pauseSound: {fileID: 8300000, guid: 65fd67a3b1eca2f46823e0958cbd9f06, type: 3}
 --- !u!114 &78740234
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3268,6 +3269,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameOverUI: {fileID: 1536089266}
+  gameOverSound: {fileID: 8300000, guid: 362b225938f71a74f8766a974b51a25b, type: 3}
 --- !u!114 &1787712967
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3415,6 +3417,7 @@ MonoBehaviour:
   dialogueUI: {fileID: 1095246471}
   controlScreen: {fileID: 1270259309}
   letterDelay: 0.005
+  typingSound: {fileID: 8300000, guid: 9a6d317fa2f04ab4db22580de4085257, type: 3}
 --- !u!114 &1847424523
 MonoBehaviour:
   m_ObjectHideFlags: 0

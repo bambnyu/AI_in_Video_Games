@@ -25,6 +25,9 @@ public class PlayerController : MonoBehaviour
 
     private GridManager gridManager;
     private Animator animator;
+    public AudioClip shootsound;
+
+    //no sound for shooting awful to hear the same sound over and over again
 
 
     // Start is called before the first frame update
@@ -34,6 +37,7 @@ public class PlayerController : MonoBehaviour
         animator = GetComponent<Animator>(); // Get the Animator component
         gridManager = FindObjectOfType<GridManager>(); // Reference to the GridManager
         currentSpeed = normalSpeed; // Set the initial speed
+
     }
 
     // Update is called once per frame
@@ -110,6 +114,7 @@ public class PlayerController : MonoBehaviour
 
     private void Shoot(GameObject target)
     {
+        
         // Instantiate the bullet at the player's position
         GameObject bullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
         // Calculate the direction to the target

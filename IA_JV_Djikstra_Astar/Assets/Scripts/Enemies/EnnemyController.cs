@@ -16,10 +16,13 @@ public class EnemyController : MonoBehaviour
     public int health = 30; // life points of the enemy
 
     private Animator animator;
+    public AudioClip hitSound; // Sound effect for taking damage
+    private AudioSource audioSource; // Reference to the AudioSource component
 
     void Start()
     {
         animator = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
 
         // Find the GridManager and PlayerController
         if (gridManager == null)
@@ -132,6 +135,10 @@ public class EnemyController : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
+        if (hitSound != null)
+        {
+            audioSource.PlayOneShot(hitSound);
+        }
         // Reduce the health of the enemy and check if it is dead
         health -= damage;
         if (health <= 0)
