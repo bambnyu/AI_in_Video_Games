@@ -58,7 +58,7 @@ public class PlayerController : MonoBehaviour
         rb.velocity = new Vector2(speedX, speedY); // Set the velocity of the player
 
         // Determine the direction based on input, only if there is movement
-        if (Mathf.Abs(speedX) > Mathf.Abs(speedY) && Mathf.Abs(speedX) > Mathf.Epsilon)
+        if (Mathf.Abs(speedX) > Mathf.Abs(speedY) && Mathf.Abs(speedX) > Mathf.Epsilon) // This condition is a bit obscure but works
         {
             // Horizontal movement
             animator.SetInteger("Direction", speedX > 0 ? 3 : 2); // 3: Right, 2: Left
@@ -70,7 +70,6 @@ public class PlayerController : MonoBehaviour
             animator.SetInteger("Direction", speedY > 0 ? 1 : 0); // 1: Up, 0: Down
             Debug.Log("Vertical movement");
         }
-        // No reset for `Direction` here, so it retains the last value when speed is zero
 
         // Check if it's time to fire
         if (Time.time >= nextFireTime)

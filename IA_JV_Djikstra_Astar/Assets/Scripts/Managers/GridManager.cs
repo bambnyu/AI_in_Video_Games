@@ -37,7 +37,7 @@ public class GridManager : MonoBehaviour
                 {
                     tileToSpawn = wallTile;
                 }
-                else if (randomValue < wallProbability + waterProbability)
+                else if (randomValue < wallProbability + waterProbability && (x + y != 0)) // Don't put water on the spawning tile of the player
                 {
                     tileToSpawn = waterTile;
                 }

@@ -60,7 +60,7 @@ public class DijkstraEnemyController : MonoBehaviour
             // Find the path to follow
             pathToFollow = pathfinding.FindPath(start, target);
 
-            if (pathToFollow != null && pathToFollow.Count > 0) // not sure if the second condition is necessary
+            if (pathToFollow != null && pathToFollow.Count > 0) // not sure if the second condition is necessary for the count
             {
                 // Follow the path to the player
                 foreach (Vector2 tilePosition in pathToFollow)
@@ -145,6 +145,5 @@ public class DijkstraEnemyController : MonoBehaviour
         ScoreManager.instance.AddScore(1); // Increase score by 1
         Destroy(gameObject);
         //maybe add some particle effects or sound effects
-        //and maybe some other stuff like animations
     }
 }

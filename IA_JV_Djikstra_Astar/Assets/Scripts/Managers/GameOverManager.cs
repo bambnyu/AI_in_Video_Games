@@ -7,13 +7,13 @@ public class GameOverManager : MonoBehaviour
 
     public void ShowGameOver()
     {
-        gameOverUI.SetActive(true);
-        Time.timeScale = 0f;
+        gameOverUI.SetActive(true); // Display the Game Over UI
+        Time.timeScale = 0f; // Pause the game by setting time scale to 0
     }
 
     public void RestartLevel()
     {
-        Time.timeScale = 1f;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        Time.timeScale = 1f; // Reset the time scale to normal speed
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex); // Reload the current scene
     }
 }

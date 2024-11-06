@@ -146,6 +146,5 @@ public class EnemyController : MonoBehaviour
         ScoreManager.instance.AddScore(1); // Increase score by 1
         Destroy(gameObject);
         //maybe add some particle effects or sound effects
-        //and maybe some other stuff like animations
-    }
+            }
 }
