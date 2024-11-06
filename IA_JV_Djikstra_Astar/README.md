@@ -14,6 +14,7 @@ Le jeu est accessible en ligne sur [Itch.io](https://ameiswhattodo.itch.io/astar
 
 ## Sommaire
 
+- [Téléchargement](#téléchargement)
 - [Aperçu](#aperçu)
 - [Fonctionnalités et Contrôles](#fonctionnalités-et-contrôles)
 - [Utilisation](#utilisation)
@@ -21,6 +22,15 @@ Le jeu est accessible en ligne sur [Itch.io](https://ameiswhattodo.itch.io/astar
 - [Suggestions d’Améliorations](#suggestions-daméliorations)
 
 ---
+
+### Téléchargement
+
+Pour accéder et jouer à **The Green Cat**, suivez les étapes ci-dessous :
+
+1. **Accéder au jeu** : Téléchargez le dossier **IA_JV_Djikstra_Astar**, qui contient les dossiers nécessaires pour le projet (les autres fichiers ne sont pas requis).
+2. **Importer dans Unity** : Une fois le dossier téléchargé, importez-le dans Unity.
+3. **Lancer le jeu** : Ouvrez le projet dans Unity, puis appuyez sur "Play" pour démarrer le jeu.
+
 
 ### Aperçu
 
