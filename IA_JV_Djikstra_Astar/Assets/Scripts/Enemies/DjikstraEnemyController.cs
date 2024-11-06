@@ -77,7 +77,7 @@ public class DijkstraEnemyController : MonoBehaviour
                 }
             }
 
-            yield return new WaitForSeconds(0.5f); // Wait for a short time before recalculating the path
+            yield return new WaitForSeconds(0.001f); // Wait for a short time before recalculating the path
         }
     }
 
