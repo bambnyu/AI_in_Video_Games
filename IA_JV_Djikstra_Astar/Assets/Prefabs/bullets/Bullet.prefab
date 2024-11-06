@@ -102,7 +102,7 @@ MonoBehaviour:
   speed: 10
   lifeTime: 6
   damage: 10
-  darkenAmount: 0.2
+  darkenAmount: 0.35
 --- !u!58 &7823126246143225281
 CircleCollider2D:
   m_ObjectHideFlags: 0

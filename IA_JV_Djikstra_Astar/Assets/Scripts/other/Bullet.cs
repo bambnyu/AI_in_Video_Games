@@ -5,7 +5,7 @@ public class Bullet : MonoBehaviour
     public float speed = 10f;
     public float lifeTime = 6f; // Time before the bullet is destroyed automatically
     public int damage = 10;
-    public float darkenAmount = 0.2f; // Amount to darken the color on each hit
+    public float darkenAmount = 0.35f; // Amount to darken the color on each hit
 
     private void Start()
     {
