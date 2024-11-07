@@ -79,13 +79,13 @@ Dans le premier niveau, seuls les sols et les murs sont présents, tandis que le
 
 ### Suggestions d’Améliorations
 
-Bien que le jeu soit pleinement fonctionnel, certaines améliorations potentielles ont été identifiées pour l'optimiser :
+Bien que le jeu soit fonctionnel, certaines améliorations potentielles ont été trouvées pour améliorer l'expérience :
 
-- **Pathfinding amélioré** : Ajouter une option pour une poursuite constante au lieu d'une traque intermittente.
+- **Pathfinding amélioré** : Ajouter une option pour une poursuite constante au lieu d'une traque intermittente. Cela était un choix mais il pourrait être intéressant de le mettre en option
 - **Gestion des apparitions** : Empêcher les ennemis d'apparaître dans les murs ou trop près du joueur.
 - **Transitions sonores** : Améliorer la fin des effets sonores pour les rendre plus naturels lors de la destruction d’objets.
 - **Animations du joueur** : Lisser les animations pour une meilleure fluidité.
-- **Ajout de niveaux** : Intégrer davantage de niveaux pour diversifier le gameplay.
+- **Ajout de niveaux** : Intégrer davantage de niveaux.
 - **Amélioration de la gestion des dialogues** : Éviter de réafficher tous les dialogues lors d'une réinitialisation de niveau.
 
 --- 
