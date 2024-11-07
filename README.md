@@ -1,4 +1,5 @@
 # The Green Cat: A* et Dijkstra - Démonstration de Pathfinding
+_Adjamé Tellier-Rozen_
 
 ![Aperçu du jeu](https://github.com/user-attachments/assets/a8d562cb-1b9c-41d3-a40d-33ad2a6b3ef1)
 
