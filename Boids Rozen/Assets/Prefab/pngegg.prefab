@@ -165,5 +165,6 @@ MonoBehaviour:
   maxForce: 1
   neighborRadius: 2.5
   separationRadius: 1.5
-  boxSize: {x: 30, y: 15}
+  boxSize: {x: 35, y: 15}
   fleeRadius: 3
+  obstacleAvoidanceRadius: 2

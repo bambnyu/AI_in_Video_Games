@@ -11,16 +11,25 @@ public class Boid : MonoBehaviour
 
     [Header("Boundary Settings")]
     public Vector2 boxSize = new Vector2(10, 10); // Size of the bounding box
+    private bool isInPen = false;
 
     [Header("Flee Settings")]
     public float fleeRadius = 3.0f; // Radius to start fleeing from the wolf
+
+    [Header("Obstacle Avoidance Settings")]
+    public float obstacleAvoidanceRadius = 2.0f; // Distance to start avoiding obstacles
 
     private Vector2 velocity;
     private List<Boid> allBoids;
     private Transform wolfTransform; // Reference to the wolf's transform
 
+
+    private SheepCount sheepCount;
+
     private void Start()
     {
+        sheepCount = FindObjectOfType<SheepCount>();
+
         velocity = Random.insideUnitCircle.normalized * maxSpeed;
         allBoids = new List<Boid>(FindObjectsOfType<Boid>());
 
@@ -54,9 +63,30 @@ public class Boid : MonoBehaviour
             velocity += fleeForce;
         }
 
+        // Apply obstacle avoidance
+        Vector2 avoidanceForce = AvoidObstacles();
+        velocity += avoidanceForce;
+
+        // Move the boid based on calculated velocity
         transform.position += (Vector3)velocity * Time.fixedDeltaTime;
+
+        // Check if the boid has crossed into the pen (x > 11)
+        if (!isInPen && transform.position.x > 11)
+        {
+            isInPen = true; // Mark as being in the pen
+            sheepCount.UpdateSheepInPen(sheepCount.sheepInPen + 1); 
+        }
+
+        // Lock the x coordinate if the boid has crossed into the pen
+        if (isInPen && transform.position.x < 11)
+        {
+            transform.position = new Vector3(11, transform.position.y, transform.position.z);
+        }
+
+        // Update boid's facing direction
         transform.up = velocity;
     }
+
 
     private Vector2 FleeFromWolf()
     {
@@ -74,6 +104,25 @@ public class Boid : MonoBehaviour
             }
         }
         return fleeForce;
+    }
+
+    private Vector2 AvoidObstacles()
+    {
+        Vector2 avoidanceForce = Vector2.zero;
+        Collider2D[] obstacles = Physics2D.OverlapCircleAll(transform.position, obstacleAvoidanceRadius);
+
+        foreach (Collider2D obstacle in obstacles)
+        {
+            if (obstacle.CompareTag("Wall"))
+            {
+                Vector2 awayFromObstacle = (Vector2)(transform.position - obstacle.transform.position);
+                awayFromObstacle = awayFromObstacle.normalized * maxSpeed;
+                avoidanceForce += awayFromObstacle - velocity;
+            }
+        }
+
+        avoidanceForce = Vector2.ClampMagnitude(avoidanceForce, maxForce);
+        return avoidanceForce;
     }
 
     private Vector2 KeepInsideBox()
