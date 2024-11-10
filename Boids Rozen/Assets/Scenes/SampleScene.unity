@@ -625,7 +625,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5878704577196300848, guid: 520cc8b0ea014584ebd7a99143c7179c, type: 3}
       propertyPath: m_Name
-      value: pngegg (1)
+      value: Wolf
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
