@@ -10,7 +10,7 @@ public class Boid : MonoBehaviour
     public float separationRadius = 1.5f;
 
     [Header("Boundary Settings")]
-    public Vector2 boxSize = new Vector2(10, 10); // Size of the bounding box
+    public Vector2 boxSize = new Vector2(35, 15); // Size of the bounding box
     private bool isInPen = false;
 
     [Header("Flee Settings")]
