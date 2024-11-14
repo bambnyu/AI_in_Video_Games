@@ -43,9 +43,9 @@ public class Boid : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Vector2 alignment = CalculateAlignment() * 1.5f;
-        Vector2 cohesion = CalculateCohesion() * 1.0f;
-        Vector2 separation = CalculateSeparation() * 1.5f;
+        Vector2 alignment = CalculateAlignment() * 1.50f; //1.5  // 0.8
+        Vector2 cohesion = CalculateCohesion() * 1.0f; //1.0f
+        Vector2 separation = CalculateSeparation() * 1.5f; //1.5
 
         Vector2 steering = alignment + cohesion + separation;
         steering = Vector2.ClampMagnitude(steering, maxForce);
