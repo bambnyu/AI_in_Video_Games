@@ -40,18 +40,15 @@ public class LevelTimer : MonoBehaviour
     {
         // Enable the lost canvas when time's up
         lostCanvas.SetActive(true);
-        Time.timeScale = 0f; // Pause the game if needed
     }
 
     public void RestartLevel()
     {
-        Time.timeScale = 1f; // Unpause the game
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name); // Reloads the current level
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex); // Reload the current scene
     }
 
     public void QuitGame()
     {
-        Time.timeScale = 1f; // Resume game time by setting time scale to 1
         SceneManager.LoadScene("StartScene");
 
         //Application.Quit();
