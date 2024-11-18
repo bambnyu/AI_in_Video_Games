@@ -13,7 +13,16 @@ public class WolfController : MonoBehaviour
 
         // Calculate movement
         Vector2 movement = new Vector2(moveHorizontal, moveVertical).normalized * speed * Time.deltaTime;
-        transform.Translate(movement);
+
+        if (movement != Vector2.zero)
+        {
+            // Rotate the wolf to face the movement direction
+            float angle = Mathf.Atan2(movement.y, movement.x) * Mathf.Rad2Deg;
+            transform.rotation = Quaternion.Euler(0, 0, angle - 90); // Subtract 90 degrees to align sprite correctly
+        }
+
+        // Apply movement
+        transform.Translate(movement, Space.World);
 
         // Clamp position within the box boundaries
         float clampedX = Mathf.Clamp(transform.position.x, -boxSize.x / 2, boxSize.x / 2);

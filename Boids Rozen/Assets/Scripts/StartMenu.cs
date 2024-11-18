@@ -5,7 +5,8 @@ public class StartMenu : MonoBehaviour
 {
     public void StartGame()
     {
-        SceneManager.LoadScene("Level1"); // changer le nom des scènes quand ce sera mis au point
+        Time.timeScale = 1f; // to be sure the time scale is normal
+        SceneManager.LoadScene("Level1"); // first level
     }
 
     public void QuitGame()

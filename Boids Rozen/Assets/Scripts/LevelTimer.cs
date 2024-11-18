@@ -1,18 +1,19 @@
 using UnityEngine;
-using TMPro; // Import TextMeshPro namespace
+using TMPro; 
 using UnityEngine.SceneManagement;
 
 public class LevelTimer : MonoBehaviour
 {
-    public float levelTime = 120f; // Set to 2 minutes (120 seconds)
+    public float levelTime = 120f; // Set in game depending on level
     private float timeRemaining;
-    public TextMeshProUGUI timerText; // Reference to the TMP Text for the timer
-    public GameObject lostCanvas; // Reference to the Lost Canvas
+    public TextMeshProUGUI timerText; 
+    public GameObject lostCanvas; 
 
     void Start()
     {
+        Time.timeScale = 1f; // Ensure time scale is normal a bad fix for the load bug
         timeRemaining = levelTime;
-        lostCanvas.SetActive(false); // Hide the lost canvas at the start
+        lostCanvas.SetActive(false); 
     }
 
     void Update()
@@ -49,8 +50,6 @@ public class LevelTimer : MonoBehaviour
 
     public void QuitGame()
     {
-        SceneManager.LoadScene("StartScene");
-
-        //Application.Quit();
+        SceneManager.LoadScene("StartScene"); // Load the start scene
     }
 }

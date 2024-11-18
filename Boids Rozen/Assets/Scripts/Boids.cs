@@ -21,7 +21,7 @@ public class Boid : MonoBehaviour
 
     private Vector2 velocity;
     private List<Boid> allBoids;
-    private Transform wolfTransform; // Reference to the wolf's transform
+    private Transform wolfTransform;
 
 
     private SheepCount sheepCount;
@@ -33,7 +33,7 @@ public class Boid : MonoBehaviour
         velocity = Random.insideUnitCircle.normalized * maxSpeed;
         allBoids = new List<Boid>(FindObjectsOfType<Boid>());
 
-        // Locate the wolf by its tag (set the wolf's tag to "Wolf" in Unity)
+        // Locate the wolf by its tag
         GameObject wolf = GameObject.FindGameObjectWithTag("Wolf");
         if (wolf != null)
         {
@@ -43,7 +43,7 @@ public class Boid : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Vector2 alignment = CalculateAlignment() * 0.8f; //1.5  // 0.8  //8.0f
+        Vector2 alignment = CalculateAlignment() * 0.8f; //1.5  // 0.8  //8.0f  //other values that could show interesting behavior
         Vector2 cohesion = CalculateCohesion() * 1.0f; //1.0f
         Vector2 separation = CalculateSeparation() * 1.50f; //1.5 //4.0f
 

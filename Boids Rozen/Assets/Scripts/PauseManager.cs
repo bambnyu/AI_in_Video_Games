@@ -25,17 +25,17 @@ public class PauseManager : MonoBehaviour
 
     public void Resume()
     {
-        pauseMenuUI.SetActive(false); // Hide the pause menu UI
+        pauseMenuUI.SetActive(false); 
         Time.timeScale = 1f; // Resume game time by setting time scale to 1
-        isPaused = false; // Update pause state
+        isPaused = false; 
 
     }
 
     public void Pause()
     {
-        pauseMenuUI.SetActive(true); // Show the pause menu UI
+        pauseMenuUI.SetActive(true); 
         Time.timeScale = 0f; // Pause game time by setting time scale to 0
-        isPaused = true; // Update pause state
+        isPaused = true; 
 
     }
 
@@ -49,8 +49,6 @@ public class PauseManager : MonoBehaviour
     {
         Time.timeScale = 1f; // Resume game time by setting time scale to 1
         SceneManager.LoadScene("StartScene");
-
-        //Application.Quit();
     }
 
 }

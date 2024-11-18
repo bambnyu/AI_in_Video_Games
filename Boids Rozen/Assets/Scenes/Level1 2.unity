@@ -789,7 +789,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sheepPrefab: {fileID: 1465312458270938975, guid: 50485799bf5bff04282115573ce6fea9, type: 3}
-  flockSize: 40
+  flockSize: 50
   spawnAreaSize: {x: 10, y: 10}
 --- !u!4 &226861744
 Transform:
@@ -1664,7 +1664,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: a5102388eb8f2c04291de6f77519922b, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.498
+  m_Volume: 0.504
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -2525,7 +2525,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f533d49eb3d1d0142ac129d538664bde, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelTime: 200
+  levelTime: 100
   timerText: {fileID: 1171156633}
   lostCanvas: {fileID: 969557522}
 --- !u!4 &1010296271
@@ -2934,7 +2934,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 56, y: -59.4}
+  m_AnchoredPosition: {x: 56, y: -61}
   m_SizeDelta: {x: 108.6154, y: 38.4963}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1172325155
@@ -3054,7 +3054,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   WinMenuUI: {fileID: 215238249}
   sheepCount: {fileID: 625103593}
-  totalSheep: 40
+  totalSheep: 50
 --- !u!1 &1187670004
 GameObject:
   m_ObjectHideFlags: 0
@@ -3262,7 +3262,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 1.6921387, y: -81.2514}
+  m_AnchoredPosition: {x: 1.6921387, y: -82.85141}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1483158681

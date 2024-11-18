@@ -3,8 +3,8 @@ using TMPro;
 
 public class SheepCount : MonoBehaviour
 {
-    public TMP_Text sheepCounterText; // Reference to the TMP_Text component in the canvas
-    private int totalSheep;
+    public TMP_Text sheepCounterText; 
+    public int totalSheep;
     public int sheepInPen { get; private set; }
 
     void Start()
