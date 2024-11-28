@@ -1,91 +1,59 @@
-# The Green Cat: A* et Dijkstra - Démonstration de Pathfinding
+# Sheepy: A Boids Demonstration Game 
 _Adjamé Tellier-Rozen_
 
-![Aperçu du jeu](https://github.com/user-attachments/assets/a8d562cb-1b9c-41d3-a40d-33ad2a6b3ef1)
+---
 
-_The Green Cat est un jeu de survie 2D où le joueur incarne une jeune femme accompagnée d’un chat alien, cherchant à échapper aux inspecteurs jusqu'à la fin du niveau._
+## Description
+**Sheepy** is a 2D herding game where you play as a dog tasked with herding sheep back into a pen before time runs out.
 
-**Projet réalisé dans le cadre du cours d'IA pour les jeux vidéo, centré sur les algorithmes de pathfinding**
-
-L’ensemble du projet (scripts, assets visuels) a été réalisé par moi-même, à l’exception des animations de course, qui sont inspirées du pack d'assets **Ninja Adventure de Pixel Boy**. J'ai également utilisé ses sons pour la musique et les effets sonores.
-
-Le jeu est accessible en ligne sur [Itch.io](https://ameiswhattodo.itch.io/astar-djikstra-survivor).
+Created as part of a course on AI for video games, **Sheepy** showcases boid algorithms. Every aspect of the game, from the scripts to the visual assets, was developed by me, with the exception of the royalty-free music.
 
 ---
 
-## Sommaire
-
-- [Téléchargement](#téléchargement)
-- [Aperçu](#aperçu)
-- [Fonctionnalités et Contrôles](#fonctionnalités-et-contrôles)
-- [Utilisation](#utilisation)
-- [Structure du Projet](#structure-du-projet)
-- [Suggestions d’Améliorations](#suggestions-daméliorations)
-
----
-
-### Téléchargement
-
-Pour accéder et jouer à **The Green Cat**, suivez les étapes ci-dessous :
-
-1. **Accéder au jeu** : Téléchargez le dossier **IA_JV_Djikstra_Astar**, qui contient les dossiers nécessaires pour le projet (les autres fichiers ne sont pas requis).
-2. **Importer dans Unity** : Une fois le dossier téléchargé, importez-le dans Unity.
-3. **Lancer le jeu** : Ouvrez le projet dans Unity, puis appuyez sur "Play" pour démarrer le jeu.
-
-
-### Aperçu
-
-![Image du jeu](https://github.com/user-attachments/assets/4ae1818e-b192-4967-978e-62c670471108)
-
-The Green Cat propose deux niveaux où l’objectif est d’échapper à des inspecteurs en éliminant certains d’entre eux. On retrouve deux types d’inspecteurs :
-- **Inspecteurs violets** : utilisent l’algorithme A* pour traquer le joueur.
-- **Inspecteurs bleus** : utilisent l'algorithme de Dijkstra.
-
-Dans le premier niveau, seuls les sols et les murs sont présents, tandis que le deuxième niveau introduit des zones d’eau, qui ralentissent à la fois le joueur et les inspecteurs. Cela ajoute une complexité supplémentaire au pathfinding, car les zones d'eau ont un poids plus élevé.
+## Features
+- **Player Movement**: Control the dog using arrow keys.
+- **Boid Behavior**: Sheep follow group behaviors with added mechanics:
+  - Obstacle avoidance.
+  - Wall bouncing.
+  - Fleeing when the dog gets too close.
+- **Collision System**: Prevents animals and the player from passing through walls.
+- **User Interface**: Includes:
+  - Score counter.
+  - Pause menu.
+  - Fail and victory screens.
+- **Music**: Ambient soundtrack, a royalty-free music.
 
 ---
 
-### Fonctionnalités et Contrôles
+## Gameplay Overview
+**Sheepy** offers 3 levels.
 
-- **Déplacement du joueur** : Utilisez les touches fléchées.
-- **Algorithmes de pathfinding** : A* pour les ennemis violets et Dijkstra pour les ennemis bleus.
-- **Mécanique de dialogue** : Avancez dans le dialogue avec la barre d’espace.
-- **Système de collision** : Empêche le joueur et les ennemis de traverser les murs.
-- **Animations** : Déplacements dans quatre directions pour le joueur et les ennemis, ainsi qu'animations de mort pour les ennemis.
-- **Interface utilisateur** : Compteur de score, barre de vie, menus de pause, d’échec et de fin de jeu.
-- **Effets sonores et musique** : Sons pour les actions principales (dégâts, collisions, etc.) et musique d’ambiance.
-- **Système de réinitialisation** : Possibilité de recommencer le niveau en cours avec une régénération des ennemis et obstacles.
+### Animals
+- **Dog (Player)**: Direct the dog using simple keyboard inputs.
+- **Sheep (Boids)**: Exhibit group behavior with dynamic reactions.
 
-### Utilisation
+### Level Challenges
+- Varying obstacle placements.
+- Increasing sheep counts.
+- Adjustable time limits for each level.
 
-- **Lancer le jeu** : Cliquez sur "Play" dans l’éditeur Unity pour tester le jeu.
-- **Contrôles** :
-  - **Déplacement** : Utilisez les flèches directionnelles.
-  - **Dialogue** : Avancez dans les dialogues avec la barre d’espace.
-  - **Pause** : Appuyez sur Échap pour mettre en pause ou reprendre.
-  - **Réinitialisation** : Cliquez sur "Restart" dans le menu de pause pour recommencer le niveau.
+Your mission: Herd all the sheep into the pen before time runs out!
 
 ---
 
-### Structure du Projet
+## Screenshots
+![Screenshot 1](https://github.com/user-attachments/assets/0135270d-526c-4699-a191-dbd40bb6279b)
 
-- **`Assets/Scripts`** : Scripts C# pour les comportements et fonctionnalités du jeu.
-- **`Assets/Prefabs`** : Objets réutilisables, comme les ennemis et les tuiles.
-- **`Assets/Scenes`** : Scènes du jeu.
-- **`Assets/Musics`** : Effets sonores et musiques.
-- **`Assets/sprite-test-random`** : Sprites et animations.
+![Screenshot 2](https://github.com/user-attachments/assets/eb8a2273-a374-4105-87a1-edb58ca35334)
+
+![Screenshot 3](https://github.com/user-attachments/assets/8eee64e3-0172-49c5-90c7-6017a5a944e6)
+
+![Screenshot 4](https://github.com/user-attachments/assets/df2e0c19-d509-43dc-8e62-3b51461a84ca)
+
+![Screenshot 5](https://github.com/user-attachments/assets/398ca2d2-229c-4d05-899a-89d529f987bb)
 
 ---
 
-### Suggestions d’Améliorations
-
-Bien que le jeu soit fonctionnel, certaines améliorations potentielles ont été trouvées pour améliorer l'expérience :
-
-- **Pathfinding amélioré** : Ajouter une option pour une poursuite constante au lieu d'une traque intermittente. Cela était un choix mais il pourrait être intéressant de le mettre en option
-- **Gestion des apparitions** : Empêcher les ennemis d'apparaître dans les murs ou trop près du joueur.
-- **Transitions sonores** : Améliorer la fin des effets sonores pour les rendre plus naturels lors de la destruction d’objets.
-- **Animations du joueur** : Lisser les animations pour une meilleure fluidité.
-- **Ajout de niveaux** : Intégrer davantage de niveaux.
-- **Amélioration de la gestion des dialogues** : Éviter de réafficher tous les dialogues lors d'une réinitialisation de niveau.
-
---- 
+## Source Code
+The source code for **Sheepy** is available on [GitHub](https://github.com/your-repository-link). 
+You can also see the Itch page for the builds and files [Itch](https://ameiswhattodo.itch.io/sheepy).
