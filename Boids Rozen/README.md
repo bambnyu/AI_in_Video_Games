@@ -55,5 +55,4 @@ Your mission: Herd all the sheep into the pen before time runs out!
 ---
 
 ## Source Code
-The source code for **Sheepy** is available on [GitHub](https://github.com/your-repository-link). 
-You can also see the Itch page for the builds and files [Itch](https://ameiswhattodo.itch.io/sheepy).
+You can see the Itch page for the builds and files [Itch](https://ameiswhattodo.itch.io/sheepy).
