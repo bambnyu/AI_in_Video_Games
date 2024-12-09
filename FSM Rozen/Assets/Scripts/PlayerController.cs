@@ -20,9 +20,9 @@ public class PlayerController : MonoBehaviour
     public float dashDuration = 0.2f;
     public float dashCooldown = 1f;
 
-    private Rigidbody2D rb;
-    private bool isGrounded;
-    private bool isDashing;
+    public Rigidbody2D rb;
+    public bool isGrounded;
+    public bool isDashing;
     private bool canDash = true;
     private float nextFireTime = 0f;
 
@@ -49,11 +49,15 @@ public class PlayerController : MonoBehaviour
         Vector2 movement = new Vector2(moveInput * moveSpeed, rb.velocity.y);
         rb.velocity = movement;
 
-        // Flip player sprite based on movement direction
+        // Flip player sprite based on movement direction by adjusting scale
         if (moveInput > 0)
-            transform.localScale = new Vector3(1, 1, 1);
+        {
+            transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+        }
         else if (moveInput < 0)
-            transform.localScale = new Vector3(-1, 1, 1);
+        {
+            transform.localScale = new Vector3(-Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+        }
     }
 
     void HandleJump()
