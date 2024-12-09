@@ -36,33 +36,28 @@ public class PlayerAnimationController : MonoBehaviour
 
     private void UpdateState()
     {
-        // Check if the player is dashing
         if (playerController.isDashing)
         {
-            SetState(PlayerState.Dash);
+            SetState(PlayerState.Dash); //Dash
         }
-        // Check if the player is jumping
-        else if (!playerController.isGrounded)
+        else if (!playerController.isGrounded) 
         {
-            SetState(PlayerState.Jump);
+            SetState(PlayerState.Jump); // Jumping
         }
-        // Check if the player is shooting
-        else if (Input.GetButton("Fire1"))
+        else if (Input.GetButton("Fire1")) // Shooting
         {
             if (Mathf.Abs(Input.GetAxis("Horizontal")) > 0.1f)
-                SetState(PlayerState.ShootRunning);
+                SetState(PlayerState.ShootRunning); // Shooting and Running
             else
-                SetState(PlayerState.ShootIdle);
+                SetState(PlayerState.ShootIdle); // Shooting Idle
         }
-        // Check if the player is running
-        else if (Mathf.Abs(Input.GetAxis("Horizontal")) > 0.1f && playerController.isGrounded)
+        else if (Mathf.Abs(Input.GetAxis("Horizontal")) > 0.1f && playerController.isGrounded) 
         {
-            SetState(PlayerState.Run);
+            SetState(PlayerState.Run); // Running
         }
-        // Default to Idle if no other conditions are met
-        else if (playerController.isGrounded)
+        else if (playerController.isGrounded) 
         {
-            SetState(PlayerState.Idle);
+            SetState(PlayerState.Idle); // Default to Idle
         }
     }
 
@@ -91,7 +86,6 @@ public class PlayerAnimationController : MonoBehaviour
     public void TriggerDamage()
     {
         SetState(PlayerState.Damage);
-        // Optional: Return to Idle or previous state after a delay
         Invoke("ResetToIdle", 0.5f); // Adjust delay as needed
     }
 
