@@ -20,6 +20,14 @@ public class PlayerController : MonoBehaviour
     public float dashDuration = 0.2f;
     public float dashCooldown = 1f;
 
+    [Header("Health Settings")]
+    public int maxHealth = 100; // Maximum health
+    public int currentHealth;
+
+    [Header("Damage Settings")]
+    public float invincibilityDuration = 1.5f; // Time the player is invincible after taking damage
+    private bool isInvincible = false;
+
     public Rigidbody2D rb;
     public bool isGrounded;
     public bool isDashing;
@@ -29,6 +37,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        currentHealth = maxHealth; // Initialize health
     }
 
     void Update()
@@ -137,5 +146,39 @@ public class PlayerController : MonoBehaviour
         {
             isGrounded = true;
         }
+    }
+
+    public void TakeDamage(int damage)
+    {
+        if (isInvincible) return;
+
+        currentHealth -= damage;
+        Debug.Log($"Player takes {damage} damage. Health: {currentHealth}");
+
+        if (currentHealth <= 0)
+        {
+            currentHealth = 0;
+            Debug.Log("Player is defeated!");
+            Die();
+        }
+        else
+        {
+            StartCoroutine(InvincibilityCoroutine());
+        }
+    }
+
+    IEnumerator InvincibilityCoroutine()
+    {
+        isInvincible = true;
+        // Add visual feedback for invincibility (e.g., flashing sprite)
+        yield return new WaitForSeconds(invincibilityDuration);
+        isInvincible = false;
+    }
+
+    private void Die()
+    {
+        // Add behavior for when the player is defeated
+        Debug.Log("Game Over");
+        // Optional: Restart the level or end the game
     }
 }

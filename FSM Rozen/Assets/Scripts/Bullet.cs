@@ -4,10 +4,7 @@ public class Bullet : MonoBehaviour
 {
     public int damage = 10; // Damage dealt by the bullet
 
-    void Start()
-    {
-        //Destroy(gameObject, 5f); // Destroy the bullet after 5 seconds if it doesn't hit anything
-    }
+    
 
     void OnTriggerEnter2D(Collider2D collision)
     {

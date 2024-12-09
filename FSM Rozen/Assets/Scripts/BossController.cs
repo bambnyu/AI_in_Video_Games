@@ -10,7 +10,7 @@ public class BossController : MonoBehaviour
 
     [Header("Projectile Settings")]
     public GameObject projectilePrefab;
-    public Transform firePoint;
+    public Transform[] firePoints; // Array of fire points
     public float projectileSpeed = 5f;
 
     private int currentHealth;
@@ -99,10 +99,8 @@ public class BossController : MonoBehaviour
         {
             if (Time.time >= nextAttackTime)
             {
-                //FireProjectile();
                 FireBurstProjectiles();
                 nextAttackTime = Time.time + enragedAttackCooldown;
-                
             }
             yield return null;
         }
@@ -112,7 +110,8 @@ public class BossController : MonoBehaviour
     private void FireProjectile()
     {
         Debug.Log("Boss fires a projectile...");
-        GameObject projectile = Instantiate(projectilePrefab, firePoint.position, Quaternion.identity);
+        Transform selectedFirePoint = firePoints[Random.Range(0, firePoints.Length)];
+        GameObject projectile = Instantiate(projectilePrefab, selectedFirePoint.position, Quaternion.identity);
         Rigidbody2D rb = projectile.GetComponent<Rigidbody2D>();
         rb.velocity = Vector2.left * projectileSpeed; // Fire towards the player
         Destroy(projectile, 5f);
@@ -121,9 +120,10 @@ public class BossController : MonoBehaviour
     private void FireBurstProjectiles()
     {
         Debug.Log("Boss fires burst projectiles...");
+        Transform selectedFirePoint = firePoints[Random.Range(0, firePoints.Length)];
         for (int i = -1; i <= 1; i++) // Fire 3 projectiles in a spread
         {
-            GameObject projectile = Instantiate(projectilePrefab, firePoint.position, Quaternion.identity);
+            GameObject projectile = Instantiate(projectilePrefab, selectedFirePoint.position, Quaternion.identity);
             Rigidbody2D rb = projectile.GetComponent<Rigidbody2D>();
             rb.velocity = new Vector2(-1, i * 0.5f).normalized * projectileSpeed;
             Destroy(projectile, 5f);
