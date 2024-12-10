@@ -2,16 +2,15 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    public int damage = 10; // Damage dealt by the bullet
+    public int damage = 10;
 
     
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        // Check if the bullet hits an object tagged as "Enemy" (like the boss)
+        // Check if the bullet hits the enemy
         if (collision.CompareTag("Enemy"))
         {
-            // Get the BossController or any relevant health script
             BossController boss = collision.GetComponent<BossController>();
             if (boss != null)
             {

@@ -14,8 +14,8 @@ public class PlayerAnimationController : MonoBehaviour
     }
 
     [Header("References")]
-    public Animator animator; // Reference to the Animator component
-    public PlayerController playerController; // Reference to the PlayerController script
+    public Animator animator; 
+    public PlayerController playerController;
 
     private PlayerState currentState = PlayerState.Idle;
 
@@ -86,7 +86,7 @@ public class PlayerAnimationController : MonoBehaviour
     public void TriggerDamage()
     {
         SetState(PlayerState.Damage);
-        Invoke("ResetToIdle", 0.5f); // Adjust delay as needed
+        Invoke("ResetToIdle", 0.5f);
     }
 
     private void ResetToIdle()

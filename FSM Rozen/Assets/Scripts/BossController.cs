@@ -5,8 +5,8 @@ public class BossController : MonoBehaviour
 {
     [Header("Boss Settings")]
     public int maxHealth = 1000;
-    public float attackCooldown = 1f; // Time between attacks
-    public float enragedAttackCooldown = 0.5f; // Faster attack in enraged state
+    public float attackCooldown = 1f; 
+    public float enragedAttackCooldown = 0.5f; 
 
     [Header("Projectile Settings")]
     public GameObject projectilePrefab;
@@ -16,6 +16,7 @@ public class BossController : MonoBehaviour
     private int currentHealth;
     private float nextAttackTime;
     private BossState currentState;
+    private Animator animator;
 
     private enum BossState
     {
@@ -30,6 +31,7 @@ public class BossController : MonoBehaviour
     {
         currentHealth = maxHealth;
         currentState = BossState.Idle;
+        animator = GetComponent<Animator>();
         StartCoroutine(FSM());
     }
 
@@ -40,25 +42,42 @@ public class BossController : MonoBehaviour
             switch (currentState)
             {
                 case BossState.Idle:
+                    SetPhaseAnimation(1); // temporary fix since i dont have an idle animation
+
                     yield return IdleBehavior();
                     break;
+
                 case BossState.Phase1Attack:
+                    SetPhaseAnimation(1);
+
                     yield return Phase1AttackBehavior();
                     break;
+
                 case BossState.Phase2Attack:
+                    SetPhaseAnimation(2);
+
                     yield return Phase2AttackBehavior();
                     break;
+
                 case BossState.Enraged:
+                    SetPhaseAnimation(3);
                     yield return EnragedBehavior();
                     break;
             }
         }
     }
-
+    private void SetPhaseAnimation(int phase)
+    {
+        if (animator != null)
+        {
+            Debug.Log($"Setting phase to {phase}");
+            animator.SetInteger("Phase", phase); //doesn't work every time only works for 2 
+        }
+    }
     IEnumerator IdleBehavior()
     {
         Debug.Log("Boss is idle...");
-        yield return new WaitForSeconds(2f); // Wait before transitioning to Phase 1
+        yield return new WaitForSeconds(0.2f); // Wait before transitioning to Phase 1
         currentState = BossState.Phase1Attack;
     }
 
@@ -109,7 +128,7 @@ public class BossController : MonoBehaviour
 
     private void FireProjectile()
     {
-        Debug.Log("Boss fires a projectile...");
+        //Debug.Log("Boss fires a projectile...");
         Transform selectedFirePoint = firePoints[Random.Range(0, firePoints.Length)];
         GameObject projectile = Instantiate(projectilePrefab, selectedFirePoint.position, Quaternion.Euler(0, 0, 90));
 
@@ -134,22 +153,20 @@ public class BossController : MonoBehaviour
         }
 
         Rigidbody2D rb = projectile.GetComponent<Rigidbody2D>();
-        rb.velocity = Vector2.left * projectileSpeed; // Fire towards the player
+        rb.velocity = Vector2.left * projectileSpeed;
         Destroy(projectile, 5f);
     }
 
     private void FireBurstProjectiles()
     {
-        Debug.Log("Boss fires burst projectiles...");
+        //Debug.Log("Boss fires burst projectiles...");
         Transform selectedFirePoint = firePoints[Random.Range(0, firePoints.Length)];
         for (int i = -1; i <= 1; i++) // Fire 3 projectiles in a spread
         {
-            //GameObject projectile = Instantiate(projectilePrefab, selectedFirePoint.position, Quaternion.identity); // changer la rotation a -90 par rapport a la direction
             GameObject projectile = Instantiate(projectilePrefab, selectedFirePoint.position, Quaternion.Euler(0, 0, 90));
-            // Assign phase-specific animation
             BossBullet bullet = projectile.GetComponent<BossBullet>();
             Debug.Log($"Current Boss State: {currentState}");
-
+            // Animation for the bullet
             if (bullet != null)
             {
                 Debug.Log("Bullet is not null");
@@ -181,7 +198,7 @@ public class BossController : MonoBehaviour
         if (currentState == BossState.Defeated) return;
 
         currentHealth -= damage;
-        Debug.Log($"Boss takes {damage} damage. Health: {currentHealth}");
+        //Debug.Log($"Boss takes {damage} damage. Health: {currentHealth}");
 
         if (currentHealth <= 0)
         {
@@ -194,6 +211,6 @@ public class BossController : MonoBehaviour
     private void DefeatedBehavior()
     {
         Debug.Log("Boss is defeated!");
-        Destroy(gameObject, 2f); // Optional: Destroy the boss after some delay
+        Destroy(gameObject, 2f);
     }
 }

@@ -6,8 +6,8 @@ public class PlayerController : MonoBehaviour
     [Header("Movement Settings")]
     public float moveSpeed = 5f;
     public float jumpForce = 10f;
-    public float fallMultiplier = 2.5f; // Increases gravity when falling
-    public float lowJumpMultiplier = 2f; // Makes short jumps feel snappier
+    public float fallMultiplier = 2.5f; 
+    public float lowJumpMultiplier = 2f; 
 
     [Header("Shooting Settings")]
     public GameObject bulletPrefab;
@@ -25,7 +25,7 @@ public class PlayerController : MonoBehaviour
     public int currentHealth;
 
     [Header("Damage Settings")]
-    public float invincibilityDuration = 1.5f; // Time the player is invincible after taking damage
+    public float invincibilityDuration = 1.5f;
     private bool isInvincible = false;
 
     public Rigidbody2D rb;
@@ -111,8 +111,8 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.E) && canDash && !isDashing)
         {
-            float hori = Input.GetAxisRaw("Horizontal"); // Get horizontal direction
-            float vert = Input.GetAxisRaw("Vertical");   // Get vertical direction
+            float hori = Input.GetAxisRaw("Horizontal");
+            float vert = Input.GetAxisRaw("Vertical");
 
             if (hori != 0 || vert != 0)
             {
@@ -126,7 +126,7 @@ public class PlayerController : MonoBehaviour
         canDash = false;
         isDashing = true;
 
-        Vector2 dashDirection = direction.normalized; // Normalize the direction
+        Vector2 dashDirection = direction.normalized;
         float dashEndTime = Time.time + dashDuration;
 
         while (Time.time < dashEndTime)
@@ -153,12 +153,12 @@ public class PlayerController : MonoBehaviour
         if (isInvincible) return;
 
         currentHealth -= damage;
-        Debug.Log($"Player takes {damage} damage. Health: {currentHealth}");
+        //Debug.Log($"Player takes {damage} damage. Health: {currentHealth}");
 
         if (currentHealth <= 0)
         {
             currentHealth = 0;
-            Debug.Log("Player is defeated!");
+            //Debug.Log("Player is defeated!");
             Die();
         }
         else
@@ -170,15 +170,13 @@ public class PlayerController : MonoBehaviour
     IEnumerator InvincibilityCoroutine()
     {
         isInvincible = true;
-        // Add visual feedback for invincibility (e.g., flashing sprite)
         yield return new WaitForSeconds(invincibilityDuration);
         isInvincible = false;
     }
 
     private void Die()
     {
-        // Add behavior for when the player is defeated
+        // Add some game over logic here
         Debug.Log("Game Over");
-        // Optional: Restart the level or end the game
     }
 }
