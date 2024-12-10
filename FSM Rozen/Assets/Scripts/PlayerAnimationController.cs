@@ -80,17 +80,7 @@ public class PlayerAnimationController : MonoBehaviour
         animator.SetBool("isDashing", currentState == PlayerState.Dash);
         animator.SetBool("isShootingIdle", currentState == PlayerState.ShootIdle);
         animator.SetBool("isShootingRunning", currentState == PlayerState.ShootRunning);
-        animator.SetBool("isTakingDamage", currentState == PlayerState.Damage);
+        //animator.SetBool("isTakingDamage", currentState == PlayerState.Damage);
     }
 
-    public void TriggerDamage()
-    {
-        SetState(PlayerState.Damage);
-        Invoke("ResetToIdle", 0.5f);
-    }
-
-    private void ResetToIdle()
-    {
-        SetState(PlayerState.Idle);
-    }
 }

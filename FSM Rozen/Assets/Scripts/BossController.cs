@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class BossController : MonoBehaviour
 {
@@ -212,5 +213,6 @@ public class BossController : MonoBehaviour
     {
         Debug.Log("Boss is defeated!");
         Destroy(gameObject, 2f);
+        SceneManager.LoadScene("endgame");
     }
 }

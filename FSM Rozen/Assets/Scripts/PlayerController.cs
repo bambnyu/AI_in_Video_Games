@@ -27,12 +27,16 @@ public class PlayerController : MonoBehaviour
     [Header("Damage Settings")]
     public float invincibilityDuration = 1.5f;
     private bool isInvincible = false;
+    public bool isTakingDamage = false;
 
     public Rigidbody2D rb;
     public bool isGrounded;
     public bool isDashing;
     private bool canDash = true;
     private float nextFireTime = 0f;
+
+    public Animator animator; // l'animation de degats en dehors de la boucle d'animation
+
 
     void Start()
     {
@@ -152,8 +156,11 @@ public class PlayerController : MonoBehaviour
     {
         if (isInvincible) return;
 
+        isTakingDamage = true;
         currentHealth -= damage;
         //Debug.Log($"Player takes {damage} damage. Health: {currentHealth}");
+
+        animator.Play("PlayerHurt");
 
         if (currentHealth <= 0)
         {
@@ -165,6 +172,7 @@ public class PlayerController : MonoBehaviour
         {
             StartCoroutine(InvincibilityCoroutine());
         }
+        isTakingDamage = false;
     }
 
     IEnumerator InvincibilityCoroutine()
