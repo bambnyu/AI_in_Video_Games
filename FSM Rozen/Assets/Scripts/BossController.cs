@@ -111,7 +111,28 @@ public class BossController : MonoBehaviour
     {
         Debug.Log("Boss fires a projectile...");
         Transform selectedFirePoint = firePoints[Random.Range(0, firePoints.Length)];
-        GameObject projectile = Instantiate(projectilePrefab, selectedFirePoint.position, Quaternion.identity);
+        GameObject projectile = Instantiate(projectilePrefab, selectedFirePoint.position, Quaternion.Euler(0, 0, 90));
+
+        BossBullet bullet = projectile.GetComponent<BossBullet>();
+
+        if (bullet != null)
+        {
+            switch (currentState)
+            {
+                case BossState.Phase1Attack:
+                    bullet.SetPhaseAnimation("Phase1Bullet");
+                    break;
+                case BossState.Phase2Attack:
+                    bullet.SetPhaseAnimation("Phase2Bullet");
+                    break;
+                case BossState.Enraged:
+                    bullet.SetPhaseAnimation("EnragedBullet");
+                    break;
+                default:
+                    break;
+            }
+        }
+
         Rigidbody2D rb = projectile.GetComponent<Rigidbody2D>();
         rb.velocity = Vector2.left * projectileSpeed; // Fire towards the player
         Destroy(projectile, 5f);
@@ -123,7 +144,32 @@ public class BossController : MonoBehaviour
         Transform selectedFirePoint = firePoints[Random.Range(0, firePoints.Length)];
         for (int i = -1; i <= 1; i++) // Fire 3 projectiles in a spread
         {
-            GameObject projectile = Instantiate(projectilePrefab, selectedFirePoint.position, Quaternion.identity);
+            //GameObject projectile = Instantiate(projectilePrefab, selectedFirePoint.position, Quaternion.identity); // changer la rotation a -90 par rapport a la direction
+            GameObject projectile = Instantiate(projectilePrefab, selectedFirePoint.position, Quaternion.Euler(0, 0, 90));
+            // Assign phase-specific animation
+            BossBullet bullet = projectile.GetComponent<BossBullet>();
+            Debug.Log($"Current Boss State: {currentState}");
+
+            if (bullet != null)
+            {
+                Debug.Log("Bullet is not null");
+                switch (currentState)
+                {
+                    case BossState.Phase1Attack:
+                        bullet.SetPhaseAnimation("Phase1Bullet");
+                        break;
+                    case BossState.Phase2Attack:
+                        bullet.SetPhaseAnimation("Phase2Bullet");
+                        break;
+                    case BossState.Enraged:
+                        bullet.SetPhaseAnimation("EnragedBullet");
+                        break;
+                    default:
+                        Debug.LogError($"Unhandled state: {currentState}");
+                        break;
+                }
+            }
+
             Rigidbody2D rb = projectile.GetComponent<Rigidbody2D>();
             rb.velocity = new Vector2(-1, i * 0.5f).normalized * projectileSpeed;
             Destroy(projectile, 5f);
