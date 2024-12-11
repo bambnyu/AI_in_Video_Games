@@ -21,7 +21,6 @@ public class BossController : MonoBehaviour
 
     private enum BossState
     {
-        Idle,
         Phase1Attack,
         Phase2Attack,
         Enraged,
@@ -31,7 +30,7 @@ public class BossController : MonoBehaviour
     void Start()
     {
         currentHealth = maxHealth;
-        currentState = BossState.Idle;
+        currentState = BossState.Phase1Attack;
         animator = GetComponent<Animator>();
         StartCoroutine(FSM());
     }
@@ -42,12 +41,6 @@ public class BossController : MonoBehaviour
         {
             switch (currentState)
             {
-                case BossState.Idle:
-                    SetPhaseAnimation(1); // temporary fix since i dont have an idle animation
-
-                    yield return IdleBehavior();
-                    break;
-
                 case BossState.Phase1Attack:
                     SetPhaseAnimation(1);
 
@@ -74,12 +67,6 @@ public class BossController : MonoBehaviour
             Debug.Log($"Setting phase to {phase}");
             animator.SetInteger("Phase", phase); //doesn't work every time only works for 2 
         }
-    }
-    IEnumerator IdleBehavior()
-    {
-        Debug.Log("Boss is idle...");
-        yield return new WaitForSeconds(0.2f); // Wait before transitioning to Phase 1
-        currentState = BossState.Phase1Attack;
     }
 
     IEnumerator Phase1AttackBehavior()
