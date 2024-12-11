@@ -73,14 +73,14 @@ public class PlayerAnimationController : MonoBehaviour
 
     private void UpdateAnimator()
     {
-        // Set Animator parameters based on the current state
+        
         animator.SetBool("isIdle", currentState == PlayerState.Idle);
         animator.SetBool("isRunning", currentState == PlayerState.Run);
         animator.SetBool("isJumping", currentState == PlayerState.Jump);
         animator.SetBool("isDashing", currentState == PlayerState.Dash);
         animator.SetBool("isShootingIdle", currentState == PlayerState.ShootIdle);
         animator.SetBool("isShootingRunning", currentState == PlayerState.ShootRunning);
-        //animator.SetBool("isTakingDamage", currentState == PlayerState.Damage);
+        //Damage is done outside the animation loop because it's simpler
     }
 
 }

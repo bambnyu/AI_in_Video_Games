@@ -11,7 +11,7 @@ public class BossController : MonoBehaviour
 
     [Header("Projectile Settings")]
     public GameObject projectilePrefab;
-    public Transform[] firePoints; // Array of fire points
+    public Transform[] firePoints; 
     public float projectileSpeed = 5f;
 
     private int currentHealth;

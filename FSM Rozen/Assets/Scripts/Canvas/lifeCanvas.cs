@@ -1,11 +1,11 @@
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro; // Use this if you're using TextMeshPro
+using TMPro;
 
 public class LifeCanvas : MonoBehaviour
 {
     [Header("UI Settings")]
-    public TextMeshProUGUI lifeText; // Use TextMeshProUGUI for TMP, or Text for default UI
+    public TextMeshProUGUI lifeText;
     public PlayerController player;
 
     void Start()
@@ -20,6 +20,6 @@ public class LifeCanvas : MonoBehaviour
 
     void UpdateLifeText()
     {
-        lifeText.text = $"Life: {player.currentHealth/10}/{player.maxHealth/10}";
+        lifeText.text = $"Life: {player.currentHealth/10}/{player.maxHealth/10}"; // Update the life text
     }
 }

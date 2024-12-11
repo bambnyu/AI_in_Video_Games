@@ -21,7 +21,7 @@ public class PlayerController : MonoBehaviour
     public float dashCooldown = 1f;
 
     [Header("Health Settings")]
-    public int maxHealth = 100; // Maximum health
+    public int maxHealth = 100;
     public int currentHealth;
 
     [Header("Damage Settings")]
@@ -35,7 +35,7 @@ public class PlayerController : MonoBehaviour
     private bool canDash = true;
     private float nextFireTime = 0f;
 
-    public Animator animator; // l'animation de degats en dehors de la boucle d'animation
+    public Animator animator; // the animation for damage outside the animation loop because it's simpler
 
 
     void Start()
@@ -53,7 +53,7 @@ public class PlayerController : MonoBehaviour
         }
         HandleShooting();
         HandleDash();
-        ApplyBetterJumpingPhysics();
+        ApplyJumping();
     }
 
     void HandleMovement()
@@ -62,7 +62,7 @@ public class PlayerController : MonoBehaviour
         Vector2 movement = new Vector2(moveInput * moveSpeed, rb.velocity.y);
         rb.velocity = movement;
 
-        // Flip player sprite based on movement direction by adjusting scale
+        // Flip player sprite based on movement direction 
         if (moveInput > 0)
         {
             transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
@@ -82,13 +82,13 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void ApplyBetterJumpingPhysics()
+    void ApplyJumping()
     {
         if (rb.velocity.y < 0) // Falling
         {
             rb.velocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
         }
-        else if (rb.velocity.y > 0 && !Input.GetButton("Jump")) // Short jump
+        else if (rb.velocity.y > 0 && !Input.GetButton("Jump"))
         {
             rb.velocity += Vector2.up * Physics2D.gravity.y * (lowJumpMultiplier - 1) * Time.deltaTime;
         }
@@ -96,7 +96,7 @@ public class PlayerController : MonoBehaviour
 
     void HandleShooting()
     {
-        if (Input.GetButton("Fire1") && Time.time >= nextFireTime)
+        if (Input.GetButton("Fire1") && Time.time >= nextFireTime) // Fire1 is left mouse button
         {
             Shoot();
             nextFireTime = Time.time + fireRate;
@@ -158,14 +158,12 @@ public class PlayerController : MonoBehaviour
 
         isTakingDamage = true;
         currentHealth -= damage;
-        //Debug.Log($"Player takes {damage} damage. Health: {currentHealth}");
 
-        animator.Play("PlayerHurt");
+        animator.Play("PlayerHurt"); // Play the hurt animation 
 
         if (currentHealth <= 0)
         {
             currentHealth = 0;
-            //Debug.Log("Player is defeated!");
             Die();
         }
         else
@@ -184,7 +182,6 @@ public class PlayerController : MonoBehaviour
 
     private void Die()
     {
-        // Add some game over logic here
         Debug.Log("Game Over");
     }
 }
